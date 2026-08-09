@@ -1,0 +1,2055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NovaCart.ai — Premium AI-Powered eCommerce Platform</title>
+<meta name="description" content="Discover the next generation of smart tech, gadgets, and audio powered by a live AI Shopping Copilot.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #07060C;
+    --bg-secondary: #0D0B16;
+    --surface: #141122;
+    --surface-2: #1D1832;
+    --surface-card: #17132B;
+    --line: #2C2647;
+    --line-light: #3C355E;
+    --text: #F3F1FD;
+    --muted: #9B94B8;
+    --muted-dark: #6C648E;
+    --violet: #B084FF;
+    --violet-glow: rgba(176,132,255,0.35);
+    --magenta: #FF5FA2;
+    --magenta-glow: rgba(255,95,162,0.35);
+    --cyan: #4CF2D0;
+    --cyan-glow: rgba(76,242,208,0.35);
+    --gold: #FFC85C;
+    --green: #4ADE80;
+    --red: #F87171;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-full: 999px;
+    --maxw: 1280px;
+    --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 15px; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  button, input, select, textarea { font-family: inherit; }
+  button { cursor: pointer; border: none; background: none; }
+  ::selection { background: var(--magenta); color: #07060C; }
+  :focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; width: 100%; }
+
+  /* GLOW & TEXT UTILS */
+  .glow-text {
+    background: linear-gradient(90deg, var(--violet), var(--magenta) 50%, var(--cyan));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    background-size: 200% auto; animation: shine 6s linear infinite;
+  }
+  @keyframes shine { to { background-position: 200% center; } }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .eyebrow::before {
+    content: ""; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--cyan); box-shadow: 0 0 10px var(--cyan);
+  }
+
+  /* BUTTONS */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 12px 24px; border-radius: var(--radius-full); font-size: 14px; font-weight: 600;
+    border: 1px solid transparent; transition: var(--transition); white-space: nowrap;
+  }
+  .btn:active { transform: scale(0.97); }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--violet), var(--magenta));
+    color: #07060C; font-weight: 700; box-shadow: 0 4px 20px var(--violet-glow);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px); box-shadow: 0 8px 30px var(--magenta-glow);
+  }
+  .btn-secondary {
+    background: var(--surface-2); border-color: var(--line); color: var(--text);
+  }
+  .btn-secondary:hover {
+    border-color: var(--violet); color: var(--violet); background: var(--surface);
+  }
+  .btn-ghost {
+    background: rgba(255,255,255,0.03); border-color: var(--line); color: var(--text);
+  }
+  .btn-ghost:hover { border-color: var(--cyan); color: var(--cyan); }
+  .btn-cyan {
+    background: var(--cyan); color: #07060C; font-weight: 700;
+  }
+  .btn-cyan:hover { box-shadow: 0 0 20px var(--cyan-glow); transform: translateY(-1px); }
+  .btn-sm { padding: 8px 16px; font-size: 12.5px; }
+  .btn-icon {
+    width: 40px; height: 40px; border-radius: 12px; border: 1px solid var(--line);
+    background: var(--surface); color: var(--text); display: inline-flex;
+    align-items: center; justify-content: center; transition: var(--transition);
+  }
+  .btn-icon:hover { border-color: var(--violet); color: var(--violet); }
+
+  /* ANNOUNCEMENT BAR */
+  .announcement-bar {
+    background: linear-gradient(90deg, #18102C, #2E1538, #18102C);
+    border-bottom: 1px solid var(--line);
+    padding: 8px 16px; text-align: center; font-size: 12.5px; color: var(--muted);
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+  }
+  .announcement-bar strong { color: var(--gold); }
+  .announcement-bar .badge-code {
+    background: rgba(255,200,92,0.15); color: var(--gold); border: 1px dashed var(--gold);
+    padding: 2px 8px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  }
+
+  /* HEADER & NAV */
+  header {
+    position: sticky; top: 0; z-index: 200;
+    background: rgba(7, 6, 12, 0.88); backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 20px; padding: 14px 24px; max-width: var(--maxw); margin: 0 auto;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 10px; font-family: 'Space Grotesk', sans-serif;
+    font-weight: 800; font-size: 22px; color: var(--text); flex-shrink: 0;
+  }
+  .logo .dot {
+    width: 10px; height: 10px; border-radius: 50%; background: var(--cyan);
+    box-shadow: 0 0 12px var(--cyan); animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{ opacity: 1; transform: scale(1); } 50%{ opacity: 0.4; transform: scale(0.85); } }
+
+  .nav-links { display: flex; align-items: center; gap: 24px; list-style: none; }
+  .nav-links a {
+    font-size: 13.5px; font-weight: 500; color: var(--muted); transition: var(--transition);
+    position: relative; padding: 4px 0;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--text); }
+  .nav-links a.active::after {
+    content: ""; position: absolute; bottom: -2px; left: 0; right: 0;
+    height: 2px; background: var(--violet); border-radius: 2px;
+  }
+
+  .header-search {
+    flex: 1; max-width: 360px; position: relative;
+  }
+  .header-search input {
+    width: 100%; background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--radius-full); padding: 9px 40px 9px 16px;
+    color: var(--text); font-size: 13.5px; transition: var(--transition);
+  }
+  .header-search input:focus { outline: none; border-color: var(--cyan); box-shadow: 0 0 16px rgba(76,242,208,0.15); }
+  .header-search-icon {
+    position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+    color: var(--muted); pointer-events: none; font-size: 14px;
+  }
+  .search-autocomplete {
+    position: absolute; top: calc(100% + 8px); left: 0; right: 0;
+    background: var(--surface-card); border: 1px solid var(--line);
+    border-radius: var(--radius); box-shadow: 0 16px 40px rgba(0,0,0,0.6);
+    display: none; flex-direction: column; overflow: hidden; z-index: 300; max-height: 380px; overflow-y: auto;
+  }
+  .search-autocomplete.show { display: flex; }
+  .autocomplete-item {
+    display: flex; align-items: center; gap: 12px; padding: 10px 14px;
+    border-bottom: 1px solid var(--line); transition: var(--transition); cursor: pointer;
+  }
+  .autocomplete-item:hover { background: var(--surface-2); }
+  .autocomplete-item img { width: 40px; height: 40px; border-radius: 8px; object-fit: cover; }
+  .autocomplete-item .info { flex: 1; min-width: 0; }
+  .autocomplete-item h5 { font-size: 13px; truncate: ellipsis; overflow: hidden; white-space: nowrap; }
+  .autocomplete-item span { font-size: 11.5px; color: var(--muted); }
+  .autocomplete-item .price { font-family: 'JetBrains Mono', monospace; color: var(--gold); font-size: 12.5px; }
+
+  .header-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .icon-btn-badge { position: relative; }
+  .count-badge {
+    position: absolute; top: -5px; right: -5px; background: var(--magenta);
+    color: #07060C; font-size: 10px; font-weight: 800; width: 18px; height: 18px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 10px var(--magenta-glow);
+  }
+
+  .mobile-menu-btn { display: none; }
+
+  /* PAGE VIEWS */
+  .page-view { display: none; padding-bottom: 80px; min-height: 70vh; }
+  .page-view.active { display: block; animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* HERO SECTION */
+  .hero {
+    position: relative; padding: 75px 24px 60px; overflow: hidden;
+    background: radial-gradient(circle at 50% -20%, rgba(176,132,255,0.18), transparent 60%);
+  }
+  .hero-inner { max-width: var(--maxw); margin: 0 auto; text-align: center; position: relative; z-index: 2; }
+  .hero h1 { font-size: clamp(34px, 5.5vw, 64px); line-height: 1.05; margin-bottom: 20px; }
+  .hero p { color: var(--muted); font-size: 17px; max-width: 620px; margin: 0 auto 32px; }
+  .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+  #heroCanvas { width: 100%; height: 180px; border-radius: var(--radius); margin-bottom: 24px; }
+  .trust-bar {
+    display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;
+    color: var(--muted); font-size: 13px; font-family: 'JetBrains Mono', monospace;
+    border-top: 1px solid var(--line); padding-top: 24px;
+  }
+  .trust-bar strong { color: var(--text); }
+
+  /* CATEGORIES showcase */
+  .section-head {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 28px; gap: 20px; flex-wrap: wrap;
+  }
+  .section-head h2 { font-size: clamp(22px, 3vw, 30px); }
+  .section-head p { color: var(--muted); font-size: 14px; margin-top: 4px; }
+
+  .category-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px;
+  }
+  .category-card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 20px; text-align: center; transition: var(--transition); cursor: pointer;
+  }
+  .category-card:hover {
+    border-color: var(--violet); transform: translateY(-4px); background: var(--surface-2);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+  }
+  .category-icon { font-size: 32px; margin-bottom: 10px; }
+  .category-card h4 { font-size: 15px; margin-bottom: 4px; }
+  .category-card span { font-size: 12px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+
+  /* PRODUCT CARDS & GRID */
+  .product-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 22px;
+  }
+  .product-card {
+    background: var(--surface-card); border: 1px solid var(--line); border-radius: var(--radius);
+    overflow: hidden; transition: var(--transition); display: flex; flex-direction: column;
+    position: relative;
+  }
+  .product-card:hover {
+    border-color: var(--violet); transform: translateY(-5px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+  }
+  .product-media {
+    position: relative; aspect-ratio: 1/1; overflow: hidden; background: var(--surface-2);
+  }
+  .product-media img {
+    width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;
+  }
+  .product-card:hover .product-media img { transform: scale(1.06); }
+  
+  .badge-tag {
+    position: absolute; top: 10px; left: 10px; background: rgba(7, 6, 12, 0.78);
+    backdrop-filter: blur(8px); color: var(--cyan); font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; padding: 4px 9px; border-radius: var(--radius-full);
+    border: 1px solid var(--line); font-weight: 600; z-index: 2;
+  }
+  .badge-tag.ai-badge { color: var(--violet); border-color: rgba(176,132,255,0.4); }
+  .badge-tag.discount-badge { color: var(--magenta); border-color: rgba(255,95,162,0.4); }
+
+  .wishlist-btn {
+    position: absolute; top: 10px; right: 10px; width: 34px; height: 34px;
+    border-radius: 50%; background: rgba(7, 6, 12, 0.75); backdrop-filter: blur(8px);
+    border: 1px solid var(--line); color: var(--muted); display: flex;
+    align-items: center; justify-content: center; font-size: 15px; z-index: 2;
+    transition: var(--transition);
+  }
+  .wishlist-btn:hover, .wishlist-btn.active { color: var(--magenta); border-color: var(--magenta); background: rgba(255,95,162,0.15); }
+
+  .product-body { padding: 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .product-brand { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; }
+  .product-title { font-size: 15px; line-height: 1.35; font-weight: 600; cursor: pointer; }
+  .product-title:hover { color: var(--violet); }
+  .product-rating { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--gold); }
+  .product-rating span { color: var(--muted); font-size: 11.5px; }
+  .product-desc { font-size: 12.5px; color: var(--muted); line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; flex: 1; }
+  .product-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; gap: 10px; }
+  .price-box { display: flex; flex-direction: column; }
+  .price-current { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 19px; color: var(--gold); }
+  .price-old { color: var(--muted-dark); font-size: 12px; text-decoration: line-through; margin-left: 4px; }
+  .add-cart-btn {
+    background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius-sm);
+    padding: 8px 14px; font-size: 12.5px; font-weight: 600; color: var(--text); transition: var(--transition);
+  }
+  .add-cart-btn:hover { background: var(--violet); border-color: var(--violet); color: #07060C; }
+
+  /* SKELETON LOADERS */
+  .skeleton {
+    background: linear-gradient(90deg, var(--surface) 25%, var(--surface-2) 50%, var(--surface) 75%);
+    background-size: 200% 100%; animation: loading 1.5s infinite; border-radius: var(--radius-sm);
+  }
+  @keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+  /* SHOP FILTERS LAYOUT */
+  .shop-layout { display: grid; grid-template-columns: 260px 1fr; gap: 28px; margin-top: 20px; }
+  .filter-sidebar {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 22px; height: fit-content; display: flex; flex-direction: column; gap: 22px;
+  }
+  .filter-group h4 { font-size: 13.5px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+  .filter-list { display: flex; flex-direction: column; gap: 8px; max-height: 200px; overflow-y: auto; }
+  .filter-checkbox { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text); cursor: pointer; }
+  .filter-checkbox input { accent-color: var(--violet); width: 15px; height: 15px; cursor: pointer; }
+  .filter-checkbox span { flex: 1; }
+  .filter-checkbox small { color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+
+  .range-slider { width: 100%; accent-color: var(--violet); margin-top: 6px; }
+  .price-range-labels { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); font-family: 'JetBrains Mono', monospace; margin-top: 4px; }
+
+  .shop-toolbar {
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    margin-bottom: 20px; flex-wrap: wrap; background: var(--surface); padding: 12px 18px;
+    border: 1px solid var(--line); border-radius: var(--radius);
+  }
+  .sort-select {
+    background: var(--surface-2); border: 1px solid var(--line); color: var(--text);
+    padding: 8px 14px; border-radius: var(--radius-sm); font-size: 13px; outline: none; cursor: pointer;
+  }
+
+  /* PRODUCT DETAILS VIEW */
+  .pd-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 20px; }
+  .pd-gallery { display: flex; flex-direction: column; gap: 14px; }
+  .pd-main-img {
+    width: 100%; aspect-ratio: 1/1; border-radius: var(--radius); object-fit: cover;
+    border: 1px solid var(--line); background: var(--surface-2);
+  }
+  .pd-thumbs { display: flex; gap: 12px; overflow-x: auto; }
+  .pd-thumb {
+    width: 70px; height: 70px; border-radius: 10px; object-fit: cover; border: 2px solid var(--line);
+    cursor: pointer; transition: var(--transition); flex-shrink: 0;
+  }
+  .pd-thumb.active, .pd-thumb:hover { border-color: var(--violet); }
+
+  .pd-info { display: flex; flex-direction: column; gap: 16px; }
+  .pd-title { font-size: 28px; line-height: 1.2; }
+  .pd-price-row { display: flex; align-items: baseline; gap: 14px; margin: 6px 0; }
+  .pd-price { font-size: 32px; font-weight: 800; color: var(--gold); font-family: 'Space Grotesk', sans-serif; }
+  .pd-mrp { font-size: 16px; color: var(--muted); text-decoration: line-through; }
+  .pd-discount { background: rgba(255,95,162,0.15); color: var(--magenta); border: 1px solid rgba(255,95,162,0.3); padding: 4px 10px; border-radius: var(--radius-full); font-size: 12px; font-family: 'JetBrains Mono', monospace; font-weight: 600; }
+
+  .stock-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-family: 'JetBrains Mono', monospace; }
+  .stock-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
+
+  .pd-actions { display: flex; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+  .qty-picker {
+    display: flex; align-items: center; background: var(--surface-2); border: 1px solid var(--line);
+    border-radius: var(--radius-full); padding: 4px 12px; gap: 12px;
+  }
+  .qty-picker button { font-size: 16px; font-weight: 700; color: var(--text); padding: 4px 8px; }
+
+  .specs-table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 13.5px; }
+  .specs-table td { padding: 10px 14px; border-bottom: 1px solid var(--line); }
+  .specs-table td:first-child { color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 12px; width: 40%; }
+
+  .review-summary-card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 20px; margin-top: 20px;
+  }
+
+  /* BUNDLE CARD */
+  .bundle-card {
+    background: linear-gradient(135deg, rgba(176,132,255,0.08), rgba(76,242,208,0.08));
+    border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; margin-top: 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+  }
+
+  /* AI ASSISTANT PAGE & WIDGET */
+  .ai-workspace {
+    display: grid; grid-template-columns: 1fr 340px; gap: 24px; margin-top: 20px;
+  }
+  .chat-box {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    display: flex; flex-direction: column; height: 600px; overflow: hidden;
+  }
+  .chat-header {
+    padding: 16px 20px; border-bottom: 1px solid var(--line); background: var(--surface-2);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .chat-messages {
+    flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 14px;
+  }
+  .msg-bubble {
+    max-width: 85%; padding: 12px 16px; border-radius: 14px; font-size: 14px; line-height: 1.5;
+  }
+  .msg-bubble.user { align-self: flex-end; background: var(--violet); color: #07060C; border-bottom-right-radius: 2px; font-weight: 500; }
+  .msg-bubble.ai { align-self: flex-start; background: var(--surface-2); border: 1px solid var(--line); border-bottom-left-radius: 2px; }
+
+  .chat-product-card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+    padding: 12px; display: flex; gap: 12px; align-items: center; margin-top: 10px;
+  }
+  .chat-product-card img { width: 54px; height: 54px; border-radius: 8px; object-fit: cover; }
+  .chat-product-card .info { flex: 1; }
+  .chat-product-card h5 { font-size: 13px; }
+  .chat-product-card .price { font-family: 'Space Grotesk', sans-serif; color: var(--gold); font-size: 14px; font-weight: 700; }
+
+  .chat-input-area {
+    padding: 14px 18px; border-top: 1px solid var(--line); display: flex; gap: 10px; background: var(--surface-2);
+  }
+  .chat-input-area input {
+    flex: 1; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-full);
+    padding: 10px 18px; color: var(--text); font-size: 13.5px; outline: none;
+  }
+  .chat-input-area input:focus { border-color: var(--cyan); }
+
+  .prompt-chips { display: flex; gap: 8px; flex-wrap: wrap; padding: 12px 20px; background: var(--surface); border-top: 1px solid var(--line); }
+  .prompt-chip {
+    background: var(--surface-2); border: 1px solid var(--line); color: var(--muted);
+    padding: 6px 12px; border-radius: var(--radius-full); font-size: 12px; transition: var(--transition);
+  }
+  .prompt-chip:hover { border-color: var(--violet); color: var(--text); }
+
+  /* FLOATING CHAT WIDGET */
+  .chat-fab {
+    position: fixed; bottom: 26px; right: 26px; z-index: 400; width: 62px; height: 62px;
+    border-radius: 50%; background: linear-gradient(135deg, var(--violet), var(--magenta));
+    box-shadow: 0 8px 30px var(--violet-glow); display: flex; align-items: center; justify-content: center;
+    font-size: 26px; color: #07060C; transition: var(--transition); cursor: pointer;
+  }
+  .chat-fab:hover { transform: scale(1.08); box-shadow: 0 12px 40px var(--magenta-glow); }
+
+  .chat-drawer-panel {
+    position: fixed; bottom: 100px; right: 26px; width: 390px; max-width: 92vw; height: 560px; max-height: 75vh;
+    background: var(--bg-secondary); border: 1px solid var(--line); border-radius: var(--radius);
+    z-index: 401; display: none; flex-direction: column; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+  }
+  .chat-drawer-panel.open { display: flex; animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* CART DRAWER & CHECKOUT */
+  .cart-drawer {
+    position: fixed; top: 0; right: 0; height: 100vh; width: 440px; max-width: 94vw;
+    background: var(--bg-secondary); border-left: 1px solid var(--line); z-index: 600;
+    transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex; flex-direction: column;
+  }
+  .cart-drawer.open { transform: translateX(0); }
+  .cart-head { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-bottom: 1px solid var(--line); }
+  .cart-items { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 16px; }
+  .cart-item { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .cart-item img { width: 70px; height: 70px; border-radius: 10px; object-fit: cover; }
+  .cart-item-info { flex: 1; }
+  .cart-item-info h5 { font-size: 14px; margin-bottom: 4px; }
+  .cart-item-info .price { font-family: 'Space Grotesk', sans-serif; color: var(--gold); font-size: 14.5px; font-weight: 700; }
+  .cart-foot { padding: 22px; border-top: 1px solid var(--line); background: var(--surface); }
+  .cart-total-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14.5px; }
+
+  .promo-row { display: flex; gap: 8px; margin: 12px 0; }
+  .promo-row input { flex: 1; background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 8px 12px; color: var(--text); font-size: 13px; text-transform: uppercase; }
+
+  /* OVERLAYS & MODALS */
+  .overlay {
+    position: fixed; inset: 0; background: rgba(4, 3, 10, 0.78); backdrop-filter: blur(6px);
+    z-index: 500; display: none; align-items: center; justify-content: center; padding: 20px;
+  }
+  .overlay.show { display: flex; }
+  .modal {
+    background: var(--bg-secondary); border: 1px solid var(--line); border-radius: var(--radius);
+    max-width: 650px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 30px; position: relative;
+    box-shadow: 0 24px 70px rgba(0,0,0,0.8);
+  }
+  .modal-close {
+    position: absolute; top: 18px; right: 18px; width: 34px; height: 34px; border-radius: 10px;
+    background: var(--surface); border: 1px solid var(--line); color: var(--text); font-size: 16px;
+    display: flex; align-items: center; justify-content: center; transition: var(--transition);
+  }
+  .modal-close:hover { border-color: var(--red); color: var(--red); }
+
+  /* FORM FIELDS */
+  .field { margin-bottom: 16px; }
+  .field label { display: block; font-size: 12.5px; color: var(--muted); margin-bottom: 6px; font-family: 'JetBrains Mono', monospace; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  input, select, textarea {
+    width: 100%; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm);
+    padding: 11px 14px; color: var(--text); font-size: 13.5px; outline: none; transition: var(--transition);
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--violet); box-shadow: 0 0 12px var(--violet-glow); }
+
+  /* TOAST NOTIFICATIONS */
+  .toast-container {
+    position: fixed; bottom: 26px; left: 26px; z-index: 700; display: flex;
+    flex-direction: column; gap: 10px; pointer-events: none;
+  }
+  .toast {
+    background: var(--surface-card); border: 1px solid var(--line); color: var(--text);
+    padding: 12px 18px; border-radius: var(--radius-sm); font-size: 13.5px; display: flex;
+    align-items: center; gap: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); pointer-events: auto;
+    animation: toastIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes toastIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--line); background: var(--bg-secondary); padding: 50px 0 30px;
+    margin-top: auto;
+  }
+  .footer-grid { display: grid; grid-template-columns: 2fr repeat(3, 1fr); gap: 36px; margin-bottom: 40px; }
+  .footer-col h4 { font-size: 15px; margin-bottom: 16px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col a { color: var(--muted); font-size: 13.5px; transition: var(--transition); }
+  .footer-col a:hover { color: var(--text); }
+  .footer-bottom { border-top: 1px solid var(--line); padding-top: 24px; text-align: center; color: var(--muted); font-size: 13px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 960px) {
+    .shop-layout { grid-template-columns: 1fr; }
+    .pd-container { grid-template-columns: 1fr; }
+    .ai-workspace { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 600px) {
+    .header-search { display: none; }
+    .hero-actions { flex-direction: column; }
+    .cart-drawer { width: 100vw; }
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announcement-bar">
+  <span>⚡ <strong>SUMMER AI SALE:</strong> Get 10% OFF on all neural audio & smart tech!</span>
+  <span class="badge-code">NEXUS10</span>
+  <span style="font-family:'JetBrains Mono',monospace;font-size:11px;">Ends in: <span id="saleCountdown">08h 42m 15s</span></span>
+</div>
+
+<!-- HEADER / NAV -->
+<header>
+  <nav>
+    <a href="#home" class="logo">
+      <div class="dot"></div>Nova<span class="mono" style="font-size:12px;color:var(--cyan);font-weight:400;">Cart</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#home" data-nav="home" class="active">Home</a></li>
+      <li><a href="#shop" data-nav="shop">Shop</a></li>
+      <li><a href="#categories" data-nav="categories">Categories</a></li>
+      <li><a href="#ai-assistant" data-nav="ai-assistant">✦ AI Copilot</a></li>
+      <li><a href="#offers" data-nav="offers">Deals</a></li>
+      <li><a href="#orders" data-nav="orders">My Orders</a></li>
+    </ul>
+
+    <div class="header-search">
+      <input id="searchInput" type="text" placeholder="Search tech, audio, laptops...">
+      <span class="header-search-icon">🔍</span>
+      <div class="search-autocomplete" id="searchAutocomplete"></div>
+    </div>
+
+    <div class="header-actions">
+      <a href="#wishlist" class="btn-icon icon-btn-badge" aria-label="Wishlist">
+        ❤️<span class="count-badge" id="wishlistBadge" style="display:none;">0</span>
+      </a>
+      <button class="btn-icon icon-btn-badge" id="openCartBtn" aria-label="Cart">
+        🛒<span class="count-badge" id="cartBadge" style="display:none;">0</span>
+      </button>
+      <a href="#ai-assistant" class="btn btn-primary btn-sm">✦ Ask AI</a>
+    </div>
+  </nav>
+</header>
+
+<!-- MAIN CONTENT VIEWS CONTAINER -->
+<main style="flex:1;">
+
+  <!-- VIEW: HOME -->
+  <div id="view-home" class="page-view active">
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="eyebrow">Production AI Marketplace</div>
+        <h1>Experience Tech Curated by <br><span class="glow-text">Intelligence, Not Algorithms.</span></h1>
+        <p>Explore 25+ cutting-edge gadgets, neural audio gear, and robotics — all backed by a real-time AI copilot that guides every purchase.</p>
+        <div class="hero-actions">
+          <a href="#shop" class="btn btn-primary">Explore Full Catalog →</a>
+          <a href="#ai-assistant" class="btn btn-ghost">✦ Ask AI Copilot What to Buy</a>
+        </div>
+        <canvas id="heroCanvas"></canvas>
+        <div class="trust-bar">
+          <span><strong>26,400+</strong> AI-Matched Orders</span>
+          <span><strong>4.95★</strong> Customer Satisfaction</span>
+          <span><strong>Instant</strong> Gemini Assistant</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED CATEGORIES -->
+    <section style="padding: 50px 0;">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Browse by category</div>
+            <h2>Featured Product Ecosystems</h2>
+          </div>
+          <a href="#categories" class="btn btn-secondary btn-sm">View All Categories →</a>
+        </div>
+        <div class="category-grid" id="homeCategoryGrid"></div>
+      </div>
+    </section>
+
+    <!-- AI RECOMMENDED PICKS -->
+    <section style="padding: 50px 0; background: linear-gradient(180deg, rgba(176,132,255,0.05), transparent); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Curated for you</div>
+            <h2>✦ AI Recommended Picks</h2>
+            <p>Smartly matched based on trending demand & store analytics.</p>
+          </div>
+          <button class="btn btn-ghost btn-sm" id="refreshAiPicksBtn">↻ Refresh Picks</button>
+        </div>
+        <div class="product-grid" id="aiPicksGrid"></div>
+      </div>
+    </section>
+
+    <!-- TRENDING PRODUCTS CATALOG -->
+    <section style="padding: 60px 0;">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Top sellers</div>
+            <h2>Trending Gear & Devices</h2>
+          </div>
+          <a href="#shop" class="btn btn-secondary btn-sm">View All 25+ Products →</a>
+        </div>
+        <div class="product-grid" id="homeTrendingGrid"></div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE "ASK AI" BANNER WIZARD -->
+    <section style="padding: 60px 0; background: var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+      <div class="wrap" style="text-align:center; max-width:800px;">
+        <div class="eyebrow" style="justify-content:center;">Shopping copilot</div>
+        <h2 style="font-size:32px; margin-bottom:14px;">Not sure which product suits your budget?</h2>
+        <p style="color:var(--muted); font-size:16px; margin-bottom:28px;">Ask our Gemini-powered AI Shopping Assistant for tailored comparisons, budget recommendations, or specification checks.</p>
+        <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:24px;">
+          <button class="btn btn-secondary btn-sm hero-prompt-btn">"Best laptop bag & gear under $200"</button>
+          <button class="btn btn-secondary btn-sm hero-prompt-btn">"Compare ANC earbuds vs Studio headphones"</button>
+          <button class="btn btn-secondary btn-sm hero-prompt-btn">"What smart home camera respects privacy?"</button>
+        </div>
+        <a href="#ai-assistant" class="btn btn-primary">Open AI Shopping Assistant ✦</a>
+      </div>
+    </section>
+  </div>
+
+  <!-- VIEW: SHOP -->
+  <div id="view-shop" class="page-view">
+    <div class="wrap" style="padding-top: 30px;">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Catalog explorer</div>
+          <h2>Explore All Products</h2>
+          <p id="shopSubtitle">Showing 26 realistic products</p>
+        </div>
+      </div>
+
+      <div class="shop-layout">
+        <!-- FILTER SIDEBAR -->
+        <aside class="filter-sidebar">
+          <div class="filter-group">
+            <h4>Categories</h4>
+            <div class="filter-list" id="filterCategoriesList"></div>
+          </div>
+
+          <div class="filter-group">
+            <h4>Brands</h4>
+            <div class="filter-list" id="filterBrandsList"></div>
+          </div>
+
+          <div class="filter-group">
+            <h4>Max Price ($)</h4>
+            <input type="range" class="range-slider" id="priceRangeInput" min="50" max="1500" step="50" value="1500">
+            <div class="price-range-labels">
+              <span>$50</span>
+              <strong id="priceRangeVal" style="color:var(--gold);">$1500</strong>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <h4>Minimum Rating</h4>
+            <div class="filter-list">
+              <label class="filter-checkbox"><input type="radio" name="ratingFilter" value="0" checked> <span>All Ratings</span></label>
+              <label class="filter-checkbox"><input type="radio" name="ratingFilter" value="4.8"> <span>4.8★ & above</span></label>
+              <label class="filter-checkbox"><input type="radio" name="ratingFilter" value="4.6"> <span>4.6★ & above</span></label>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <h4>Availability</h4>
+            <label class="filter-checkbox"><input type="checkbox" id="inStockToggle"> <span>In Stock Only</span></label>
+          </div>
+
+          <button class="btn btn-ghost btn-sm" id="clearFiltersBtn" style="width:100%;">Clear All Filters</button>
+        </aside>
+
+        <!-- MAIN PRODUCT GRID AREA -->
+        <div>
+          <div class="shop-toolbar">
+            <div style="font-size:13.5px; color:var(--muted);" id="resultsCountText">Showing 26 results</div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <span style="font-size:12.5px; color:var(--muted);">Sort by:</span>
+              <select class="sort-select" id="sortSelect">
+                <option value="popular">Most Popular</option>
+                <option value="rating-desc">Highest Rated</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="discount-desc">Biggest Discount</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="product-grid" id="shopProductGrid"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW: CATEGORIES -->
+  <div id="view-categories" class="page-view">
+    <div class="wrap" style="padding-top: 30px;">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Full Breakdown</div>
+          <h2>Product Categories Showcase</h2>
+          <p>Explore specialized tech ecosystems crafted for work, home, and entertainment.</p>
+        </div>
+      </div>
+      <div class="category-grid" id="fullCategoryGrid" style="grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));"></div>
+    </div>
+  </div>
+
+  <!-- VIEW: PRODUCT DETAILS -->
+  <div id="view-product-details" class="page-view">
+    <div class="wrap" style="padding-top: 30px;" id="productDetailsContainer"></div>
+  </div>
+
+  <!-- VIEW: AI ASSISTANT -->
+  <div id="view-ai-assistant" class="page-view">
+    <div class="wrap" style="padding-top: 30px;">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Live Gemini Shopping Assistant</div>
+          <h2>✦ NovaCart AI Shopping Copilot</h2>
+          <p>Ask questions about catalog items, request recommendations under budget, or compare specs side-by-side.</p>
+        </div>
+        <button class="btn btn-secondary btn-sm" id="openCompareModalBtn">⚖ Open Side-by-Side Comparison</button>
+      </div>
+
+      <div class="ai-workspace">
+        <div class="chat-box">
+          <div class="chat-header">
+            <div>
+              <strong>NovaCart Gemini Copilot</strong>
+              <div class="mono" style="font-size:11px; color:var(--cyan);">● Live Catalog Context Connected</div>
+            </div>
+            <button class="btn btn-ghost btn-sm" id="clearChatBtn">Clear Chat</button>
+          </div>
+          <div class="chat-messages" id="mainChatMsgs">
+            <div class="msg-bubble ai">
+              👋 Hi! I'm your NovaCart AI Shopping Copilot. I have full knowledge of all 26 products in our catalog. Ask me for recommendations, budget advice, or feature comparisons!
+            </div>
+          </div>
+          <div class="prompt-chips">
+            <button class="prompt-chip" data-prompt="I need wireless earbuds with ANC under $200 for workouts.">Earbuds under $200</button>
+            <button class="prompt-chip" data-prompt="What is the best laptop for software development and local AI?">Best Developer Laptop</button>
+            <button class="prompt-chip" data-prompt="Recommend smart home cameras that respect local privacy.">Privacy Security Camera</button>
+            <button class="prompt-chip" data-prompt="Compare Apex Pro Headphones vs Aria Neural Earbuds.">Compare Audio Gear</button>
+          </div>
+          <div class="chat-input-area">
+            <input id="mainChatInput" type="text" placeholder="e.g. 'Recommend a wireless gaming mouse under $100'">
+            <button class="btn btn-cyan" id="mainChatSendBtn">Send ✦</button>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <div style="background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:20px;">
+            <h4>💡 How to use AI Copilot</h4>
+            <ul style="color:var(--muted); font-size:13px; margin-top:10px; display:flex; flex-direction:column; gap:8px; padding-left:18px;">
+              <li>Specify your budget limit (e.g. "under $150").</li>
+              <li>Mention your intended use case (office, running, gaming).</li>
+              <li>Ask for comparisons between 2 items.</li>
+              <li>Click product cards right in the chat to add them directly to your cart!</li>
+            </ul>
+          </div>
+
+          <div style="background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:20px;">
+            <h4>🔥 Popular Prompts</h4>
+            <div style="display:flex; flex-direction:column; gap:8px; margin-top:12px;">
+              <button class="btn btn-ghost btn-sm hero-prompt-btn" style="justify-content:flex-start; text-align:left;">"Suggest a complete desk setup under $600"</button>
+              <button class="btn btn-ghost btn-sm hero-prompt-btn" style="justify-content:flex-start; text-align:left;">"What gadgets track daily sleep & readiness?"</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW: WISHLIST -->
+  <div id="view-wishlist" class="page-view">
+    <div class="wrap" style="padding-top: 30px;">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Saved items</div>
+          <h2>My Wishlist ❤️</h2>
+        </div>
+        <button class="btn btn-ghost btn-sm" id="clearWishlistBtn">Clear Wishlist</button>
+      </div>
+      <div class="product-grid" id="wishlistGrid"></div>
+    </div>
+  </div>
+
+  <!-- VIEW: OFFERS / DEALS -->
+  <div id="view-offers" class="page-view">
+    <div class="wrap" style="padding-top: 30px;">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Exclusive discounts</div>
+          <h2>Special Offers & Hot Deals 🔥</h2>
+          <p>Limited-time prices on selected high-performance gadgets.</p>
+        </div>
+      </div>
+      <div class="product-grid" id="offersGrid"></div>
+    </div>
+  </div>
+
+  <!-- VIEW: ORDERS HISTORY -->
+  <div id="view-orders" class="page-view">
+    <div class="wrap" style="padding-top: 30px;">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Order History</div>
+          <h2>My Past Orders</h2>
+        </div>
+      </div>
+      <div id="ordersListContainer"></div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FLOATING CHAT WIDGET & PANEL -->
+<button class="chat-fab" id="chatFab" aria-label="Open AI Shopping Assistant">✦</button>
+<div class="chat-drawer-panel" id="chatDrawerPanel">
+  <div class="chat-header">
+    <div><strong>NovaCart AI Assistant</strong><br><span class="mono" style="font-size:11px; color:var(--cyan);">● live catalog copilot</span></div>
+    <button class="modal-close" id="closeChatDrawerBtn" style="position:static;">✕</button>
+  </div>
+  <div class="chat-messages" id="drawerChatMsgs">
+    <div class="msg-bubble ai">Hi! Ask me about any products in the store or request budget suggestions.</div>
+  </div>
+  <div class="chat-input-area">
+    <input id="drawerChatInput" type="text" placeholder="Ask AI anything...">
+    <button class="btn btn-cyan btn-sm" id="drawerChatSendBtn">↑</button>
+  </div>
+</div>
+
+<!-- CART DRAWER -->
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-head">
+    <h3>Your Shopping Cart 🛒</h3>
+    <button class="modal-close" id="closeCartBtn" style="position:static;">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot">
+    <div class="promo-row">
+      <input type="text" id="promoInput" placeholder="Promo code (e.g. NEXUS10)">
+      <button class="btn btn-secondary btn-sm" id="applyPromoBtn">Apply</button>
+    </div>
+    <div class="cart-total-row"><span>Subtotal</span><strong id="cartSubtotal">$0.00</strong></div>
+    <div class="cart-total-row" id="discountRow" style="display:none; color:var(--magenta);"><span>Discount</span><strong id="cartDiscount">-$0.00</strong></div>
+    <div class="cart-total-row" style="font-size:17px; font-weight:700; margin-top:8px;"><span>Estimated Total</span><strong id="cartTotal" style="color:var(--gold);">$0.00</strong></div>
+    <button class="btn btn-primary" id="openCheckoutModalBtn" style="width:100%; margin-top:14px;">Proceed to Checkout →</button>
+  </div>
+</div>
+
+<!-- PRODUCT COMPARISON MODAL -->
+<div class="overlay" id="compareOverlay">
+  <div class="modal" style="max-width:850px;">
+    <button class="modal-close" data-close="compareOverlay">✕</button>
+    <h3>⚖ Side-by-Side Product Comparison</h3>
+    <p style="color:var(--muted); font-size:13px; margin:6px 0 18px;">Select products to compare specs and get AI insights.</p>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+      <select class="sort-select" id="compareSelect1"></select>
+      <select class="sort-select" id="compareSelect2"></select>
+    </div>
+    <button class="btn btn-primary btn-sm" id="runCompareBtn" style="width:100%; margin-bottom:18px;">✦ Run AI Comparison</button>
+    <div id="compareResultsBox"></div>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="overlay" id="checkoutOverlay">
+  <div class="modal">
+    <button class="modal-close" data-close="checkoutOverlay">✕</button>
+    <div id="checkoutModalContent"></div>
+  </div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="margin-bottom:12px;"><div class="dot"></div>Nova<span class="mono" style="font-size:12px;color:var(--cyan);">Cart</span></div>
+        <p style="color:var(--muted); font-size:13.5px; max-width:320px;">The next-generation AI-integrated eCommerce platform built for high performance gadgets, acoustics, and smart home robotics.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop Categories</h4>
+        <ul>
+          <li><a href="#shop">Audio & Acoustics</a></li>
+          <li><a href="#shop">Laptops & Computing</a></li>
+          <li><a href="#shop">Wearables & Fitness</a></li>
+          <li><a href="#shop">Smart Home & Robotics</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>AI Features</h4>
+        <ul>
+          <li><a href="#ai-assistant">✦ AI Shopping Copilot</a></li>
+          <li><a href="#ai-assistant">Side-by-Side Compare</a></li>
+          <li><a href="#home">AI Review Summarizer</a></li>
+          <li><a href="#home">Personalized Recommendations</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Trust & Security</h4>
+        <ul>
+          <li><a href="#home">Fast Global Shipping</a></li>
+          <li><a href="#home">30-Day Money Back Guarantee</a></li>
+          <li><a href="#home">Encrypted Payments</a></li>
+          <li><a href="#home">24/7 Support</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 NovaCart Platform — Powered by Express & Google Gemini. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- APPLICATION LOGIC -->
+<script>
+/* ============================================================
+   NovaCart Frontend Application Engine
+   Single-Page Hash Router, Product Catalog State, Filters,
+   Cart, Wishlist, Orders, Gemini AI Assistant & Comparison.
+   ============================================================ */
+
+const state = {
+  products: [],
+  categories: [],
+  brands: [],
+  cart: {}, // { productId: qty }
+  wishlist: [], // [ productId ]
+  appliedPromo: null,
+  activeFilters: {
+    search: '',
+    category: 'All',
+    brand: 'All',
+    maxPrice: 1500,
+    rating: 0,
+    inStock: false,
+    sort: 'popular'
+  },
+  chatHistory: []
+};
+
+const CATEGORY_ICONS = {
+  'Audio': '🎧',
+  'Laptops': '💻',
+  'Peripherals': '⌨️',
+  'Wearables': '💍',
+  'Smart Home': '📷',
+  'Robotics': '🤖',
+  'Displays': '🖥️',
+  'Gaming': '🎮',
+  'Accessories': '🔌',
+  'General': '✦'
+};
+
+function money(val) {
+  return '$' + Number(val || 0).toFixed(2);
+}
+
+function showToast(msg, icon='✓') {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = `<span style="color:var(--cyan);font-weight:700;">${icon}</span> <span>${msg}</span>`;
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(10px)';
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+}
+
+/* ---------- STORAGE API CALLS ---------- */
+async function apiGet(endpoint) {
+  try {
+    const res = await fetch(endpoint);
+    if (!res.ok) return null;
+    return await res.json();
+  } catch (e) {
+    console.error('API GET Error:', endpoint, e);
+    return null;
+  }
+}
+
+async function apiPost(endpoint, body) {
+  try {
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch (e) {
+    console.error('API POST Error:', endpoint, e);
+    return null;
+  }
+}
+
+/* ---------- LOCAL STORAGE HELPERS ---------- */
+function loadLocalState() {
+  try {
+    const savedCart = localStorage.getItem('nexus_cart');
+    if (savedCart) state.cart = JSON.parse(savedCart);
+    const savedWish = localStorage.getItem('nexus_wishlist');
+    if (savedWish) state.wishlist = JSON.parse(savedWish);
+  } catch (e) {}
+}
+
+function saveLocalState() {
+  try {
+    localStorage.setItem('nexus_cart', JSON.stringify(state.cart));
+    localStorage.setItem('nexus_wishlist', JSON.stringify(state.wishlist));
+    updateBadges();
+  } catch (e) {}
+}
+
+function updateBadges() {
+  const cartCount = Object.values(state.cart).reduce((a, b) => a + b, 0);
+  const cartBadge = document.getElementById('cartBadge');
+  cartBadge.style.display = cartCount > 0 ? 'flex' : 'none';
+  cartBadge.textContent = cartCount;
+
+  const wishCount = state.wishlist.length;
+  const wishBadge = document.getElementById('wishlistBadge');
+  wishBadge.style.display = wishCount > 0 ? 'flex' : 'none';
+  wishBadge.textContent = wishCount;
+}
+
+/* ---------- INITIALIZATION & ROUTING ---------- */
+async function initApp() {
+  loadLocalState();
+  
+  // Fetch initial product catalog from server
+  const data = await apiGet('/api/products');
+  if (data && Array.isArray(data.products)) {
+    state.products = data.products;
+  }
+
+  // Fetch categories & brands
+  const catData = await apiGet('/api/categories');
+  if (catData) state.categories = catData.categories;
+  const brandData = await apiGet('/api/brands');
+  if (brandData) state.brands = brandData.brands;
+
+  // Setup UI components
+  setupNavigation();
+  setupSearchAutocomplete();
+  setupFilters();
+  updateBadges();
+
+  // Render initial views
+  renderHomeView();
+  renderShopView();
+  renderCategoriesView();
+  populateCompareDropdowns();
+
+  // Handle route
+  handleHashChange();
+  window.addEventListener('hashchange', handleHashChange);
+
+  // Countdown timer
+  startCountdownTimer();
+}
+
+function handleHashChange() {
+  const hash = window.location.hash.replace('#', '') || 'home';
+  
+  // Parse product details route e.g. #product-p1
+  if (hash.startsWith('product-')) {
+    const prodId = hash.replace('product-', '');
+    showView('product-details');
+    renderProductDetailsView(prodId);
+    return;
+  }
+
+  showView(hash);
+  if (hash === 'wishlist') renderWishlistGrid();
+  if (hash === 'offers') renderOffersGrid();
+  if (hash === 'orders') renderOrdersHistoryView();
+}
+
+function showView(viewId) {
+  document.querySelectorAll('.page-view').forEach(el => el.classList.remove('active'));
+  const targetView = document.getElementById(`view-${viewId}`) || document.getElementById('view-home');
+  targetView.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Update navbar links active state
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    if (a.getAttribute('data-nav') === viewId) {
+      a.classList.add('active');
+    } else {
+      a.classList.remove('active');
+    }
+  });
+}
+
+function setupNavigation() {
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href.startsWith('#')) {
+        const viewName = href.replace('#', '');
+        showView(viewName);
+      }
+    });
+  });
+
+  // FAB & Drawer
+  document.getElementById('chatFab').addEventListener('click', () => {
+    document.getElementById('chatDrawerPanel').classList.toggle('open');
+  });
+  document.getElementById('closeChatDrawerBtn').addEventListener('click', () => {
+    document.getElementById('chatDrawerPanel').classList.remove('open');
+  });
+
+  // Cart Drawer
+  document.getElementById('openCartBtn').addEventListener('click', openCartDrawer);
+  document.getElementById('closeCartBtn').addEventListener('click', closeCartDrawer);
+
+  // Compare Modal
+  document.getElementById('openCompareModalBtn').addEventListener('click', () => {
+    document.getElementById('compareOverlay').classList.add('show');
+  });
+
+  // Modal overlay click close handlers
+  document.querySelectorAll('[data-close]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.getElementById(btn.dataset.close).classList.remove('show');
+    });
+  });
+  document.querySelectorAll('.overlay').forEach(ov => {
+    ov.addEventListener('click', (e) => { if (e.target === ov) ov.classList.remove('show'); });
+  });
+}
+
+/* ---------- SEARCH AUTOCOMPLETE ---------- */
+function setupSearchAutocomplete() {
+  const input = document.getElementById('searchInput');
+  const autocomplete = document.getElementById('searchAutocomplete');
+
+  input.addEventListener('input', (e) => {
+    const q = e.target.value.trim().toLowerCase();
+    if (!q) { autocomplete.classList.remove('show'); return; }
+
+    const matches = state.products.filter(p =>
+      p.name.toLowerCase().includes(q) ||
+      p.category.toLowerCase().includes(q) ||
+      p.brand.toLowerCase().includes(q)
+    ).slice(0, 5);
+
+    if (matches.length === 0) {
+      autocomplete.innerHTML = `<div style="padding:12px;color:var(--muted);font-size:13px;text-align:center;">No matching products found</div>`;
+    } else {
+      autocomplete.innerHTML = matches.map(p => `
+        <div class="autocomplete-item" onclick="navigateToProduct('${p.id}')">
+          <img src="${p.images[0]}" alt="${p.name}">
+          <div class="info">
+            <h5>${p.name}</h5>
+            <span>${p.category} · ${p.brand}</span>
+          </div>
+          <div class="price">${money(p.price)}</div>
+        </div>
+      `).join('');
+    }
+    autocomplete.classList.add('show');
+  });
+
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && input.value.trim()) {
+      state.activeFilters.search = input.value.trim();
+      autocomplete.classList.remove('show');
+      window.location.hash = '#shop';
+      applyShopFilters();
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!input.contains(e.target) && !autocomplete.contains(e.target)) {
+      autocomplete.classList.remove('show');
+    }
+  });
+}
+
+function navigateToProduct(prodId) {
+  document.getElementById('searchAutocomplete').classList.remove('show');
+  window.location.hash = `#product-${prodId}`;
+}
+
+/* ---------- RENDER PRODUCT CARD ---------- */
+function createProductCardHTML(p) {
+  const isWish = state.wishlist.includes(p.id);
+  const icon = isWish ? '❤️' : '🤍';
+  const aiBadge = p.isAiRecommended ? `<span class="badge-tag ai-badge">✦ AI Recommended</span>` : '';
+  const discountBadge = p.discountPercent ? `<span class="badge-tag discount-badge">-${p.discountPercent}%</span>` : '';
+
+  return `
+    <div class="product-card" data-id="${p.id}">
+      <div class="product-media" onclick="navigateToProduct('${p.id}')">
+        ${aiBadge || discountBadge}
+        <button class="wishlist-btn ${isWish?'active':''}" onclick="event.stopPropagation(); toggleWishlist('${p.id}')">${icon}</button>
+        <img src="${p.images[0]}" alt="${p.name}" loading="lazy">
+      </div>
+      <div class="product-body">
+        <span class="product-brand">${p.brand || p.category}</span>
+        <div class="product-title" onclick="navigateToProduct('${p.id}')">${p.name}</div>
+        <div class="product-rating">★ ${p.rating || 4.8} <span>(${p.reviewCount || 100})</span></div>
+        <p class="product-desc">${p.description}</p>
+        <div class="product-foot">
+          <div class="price-box">
+            <span class="price-current">${money(p.price)}${p.oldPrice ? `<small class="price-old">${money(p.oldPrice)}</small>` : ''}</span>
+          </div>
+          <button class="add-cart-btn" onclick="addToCart('${p.id}')">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+/* ---------- RENDER VIEWS ---------- */
+function renderHomeView() {
+  // Category Chips Grid
+  const catGrid = document.getElementById('homeCategoryGrid');
+  catGrid.innerHTML = state.categories.map(c => `
+    <div class="category-card" onclick="filterByCategory('${c.name}')">
+      <div class="category-icon">${CATEGORY_ICONS[c.name] || '✦'}</div>
+      <h4>${c.name}</h4>
+      <span>${c.count} items</span>
+    </div>
+  `).join('');
+
+  // AI Picks Grid
+  const aiPicks = state.products.filter(p => p.isAiRecommended).slice(0, 4);
+  document.getElementById('aiPicksGrid').innerHTML = aiPicks.map(p => createProductCardHTML(p)).join('');
+
+  // Trending Grid
+  const trending = state.products.slice(0, 8);
+  document.getElementById('homeTrendingGrid').innerHTML = trending.map(p => createProductCardHTML(p)).join('');
+
+  // Setup prompt button listeners
+  document.querySelectorAll('.hero-prompt-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const prompt = btn.textContent.replace(/^"|"$/g, '');
+      window.location.hash = '#ai-assistant';
+      document.getElementById('mainChatInput').value = prompt;
+      sendMainChat();
+    });
+  });
+}
+
+function filterByCategory(catName) {
+  state.activeFilters.category = catName;
+  window.location.hash = '#shop';
+  applyShopFilters();
+}
+
+function renderShopView() {
+  applyShopFilters();
+}
+
+function setupFilters() {
+  // Populate filter checkboxes for categories
+  const catContainer = document.getElementById('filterCategoriesList');
+  let catHTML = `<label class="filter-checkbox"><input type="radio" name="catRadio" value="All" checked> <span>All Categories</span></label>`;
+  state.categories.forEach(c => {
+    catHTML += `<label class="filter-checkbox"><input type="radio" name="catRadio" value="${c.name}"> <span>${c.name}</span> <small>(${c.count})</small></label>`;
+  });
+  catContainer.innerHTML = catHTML;
+
+  // Populate brand checkboxes
+  const brandContainer = document.getElementById('filterBrandsList');
+  let brandHTML = `<label class="filter-checkbox"><input type="radio" name="brandRadio" value="All" checked> <span>All Brands</span></label>`;
+  state.brands.forEach(b => {
+    brandHTML += `<label class="filter-checkbox"><input type="radio" name="brandRadio" value="${b}"> <span>${b}</span></label>`;
+  });
+  brandContainer.innerHTML = brandHTML;
+
+  // Listeners
+  catContainer.querySelectorAll('input').forEach(r => {
+    r.addEventListener('change', (e) => { state.activeFilters.category = e.target.value; applyShopFilters(); });
+  });
+
+  brandContainer.querySelectorAll('input').forEach(r => {
+    r.addEventListener('change', (e) => { state.activeFilters.brand = e.target.value; applyShopFilters(); });
+  });
+
+  const rangeInput = document.getElementById('priceRangeInput');
+  rangeInput.addEventListener('input', (e) => {
+    document.getElementById('priceRangeVal').textContent = '$' + e.target.value;
+    state.activeFilters.maxPrice = parseFloat(e.target.value);
+    applyShopFilters();
+  });
+
+  document.querySelectorAll('input[name="ratingFilter"]').forEach(r => {
+    r.addEventListener('change', (e) => { state.activeFilters.rating = parseFloat(e.target.value); applyShopFilters(); });
+  });
+
+  document.getElementById('inStockToggle').addEventListener('change', (e) => {
+    state.activeFilters.inStock = e.target.checked;
+    applyShopFilters();
+  });
+
+  document.getElementById('sortSelect').addEventListener('change', (e) => {
+    state.activeFilters.sort = e.target.value;
+    applyShopFilters();
+  });
+
+  document.getElementById('clearFiltersBtn').addEventListener('click', () => {
+    state.activeFilters = { search: '', category: 'All', brand: 'All', maxPrice: 1500, rating: 0, inStock: false, sort: 'popular' };
+    document.querySelector('input[name="catRadio"][value="All"]').checked = true;
+    document.querySelector('input[name="brandRadio"][value="All"]').checked = true;
+    rangeInput.value = 1500;
+    document.getElementById('priceRangeVal').textContent = '$1500';
+    document.querySelector('input[name="ratingFilter"][value="0"]').checked = true;
+    document.getElementById('inStockToggle').checked = false;
+    document.getElementById('sortSelect').value = 'popular';
+    applyShopFilters();
+  });
+}
+
+function applyShopFilters() {
+  let list = [...state.products];
+  const { search, category, brand, maxPrice, rating, inStock, sort } = state.activeFilters;
+
+  if (search) {
+    const q = search.toLowerCase();
+    list = list.filter(p => p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q) || p.description.toLowerCase().includes(q));
+  }
+  if (category && category !== 'All') {
+    list = list.filter(p => p.category === category);
+  }
+  if (brand && brand !== 'All') {
+    list = list.filter(p => p.brand === brand);
+  }
+  if (maxPrice) {
+    list = list.filter(p => p.price <= maxPrice);
+  }
+  if (rating) {
+    list = list.filter(p => (p.rating || 0) >= rating);
+  }
+  if (inStock) {
+    list = list.filter(p => p.inStock);
+  }
+
+  // Sorting
+  if (sort === 'price-asc') list.sort((a, b) => a.price - b.price);
+  if (sort === 'price-desc') list.sort((a, b) => b.price - a.price);
+  if (sort === 'rating-desc') list.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+  if (sort === 'discount-desc') list.sort((a, b) => (b.discountPercent || 0) - (a.discountPercent || 0));
+  if (sort === 'popular') list.sort((a, b) => (b.reviewCount || 0) - (a.reviewCount || 0));
+
+  const grid = document.getElementById('shopProductGrid');
+  document.getElementById('resultsCountText').textContent = `Showing ${list.length} of ${state.products.length} results`;
+  document.getElementById('shopSubtitle').textContent = `Filtered ${list.length} products`;
+
+  if (list.length === 0) {
+    grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:60px 20px; color:var(--muted);">No products found matching your active filters.<br><button class="btn btn-secondary btn-sm" style="margin-top:14px;" onclick="document.getElementById('clearFiltersBtn').click()">Reset Filters</button></div>`;
+    return;
+  }
+  grid.innerHTML = list.map(p => createProductCardHTML(p)).join('');
+}
+
+function renderCategoriesView() {
+  const container = document.getElementById('fullCategoryGrid');
+  container.innerHTML = state.categories.map(c => {
+    const catProds = state.products.filter(p => p.category === c.name);
+    return `
+      <div class="category-card" onclick="filterByCategory('${c.name}')" style="text-align:left;">
+        <div style="font-size:36px; margin-bottom:12px;">${CATEGORY_ICONS[c.name] || '✦'}</div>
+        <h3 style="font-size:18px; margin-bottom:6px;">${c.name}</h3>
+        <p style="color:var(--muted); font-size:13px; margin-bottom:12px;">${catProds.length} premium models available</p>
+        <button class="btn btn-ghost btn-sm" style="width:100%;">Explore ${c.name} →</button>
+      </div>
+    `;
+  }).join('');
+}
+
+/* ---------- PRODUCT DETAILS VIEW ---------- */
+async function renderProductDetailsView(prodId) {
+  const container = document.getElementById('productDetailsContainer');
+  container.innerHTML = `<div class="skeleton" style="height:400px; width:100%;"></div>`;
+
+  const res = await apiGet(`/api/products/${prodId}`);
+  if (!res || !res.product) {
+    container.innerHTML = `<div style="text-align:center; padding:60px 20px;">Product not found. <a href="#shop">Return to Shop</a></div>`;
+    return;
+  }
+
+  const p = res.product;
+  const related = res.related || [];
+  const bundle = res.bundleItem || null;
+  const isWish = state.wishlist.includes(p.id);
+
+  let specsRows = '';
+  if (p.specifications) {
+    specsRows = Object.entries(p.specifications).map(([k, v]) => `<tr><td>${k}</td><td><strong>${v}</strong></td></tr>`).join('');
+  }
+
+  let featuresList = '';
+  if (Array.isArray(p.features)) {
+    featuresList = p.features.map(f => `<li>✓ ${f}</li>`).join('');
+  }
+
+  let thumbsHTML = (p.images || []).map((img, i) => `
+    <img src="${img}" class="pd-thumb ${i===0?'active':''}" onclick="changeMainImage('${img}', this)">
+  `).join('');
+
+  let reviewsHTML = (p.reviews || []).map(r => `
+    <div style="border-bottom:1px solid var(--line); padding:12px 0;">
+      <div style="display:flex; justify-space-between; align-items:center; margin-bottom:4px;">
+        <strong>${r.author}</strong>
+        <span style="color:var(--gold); font-size:12px;">${'★'.repeat(r.rating)}</span>
+      </div>
+      <p style="color:var(--muted); font-size:13px;">"${r.comment}"</p>
+    </div>
+  `).join('');
+
+  let bundleHTML = '';
+  if (bundle) {
+    const bundleTotal = (p.price + bundle.price * 0.85).toFixed(2);
+    bundleHTML = `
+      <div class="bundle-card">
+        <div>
+          <div class="eyebrow">Frequently Bought Together</div>
+          <h4 style="font-size:16px;">Bundle with ${bundle.name} (Save 15%)</h4>
+          <p style="color:var(--muted); font-size:13px; margin-top:4px;">${p.name} + ${bundle.name}</p>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div style="font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; color:var(--gold);">$${bundleTotal}</div>
+          <button class="btn btn-primary btn-sm" onclick="addBundleToCart('${p.id}', '${bundle.id}')">Add Bundle to Cart</button>
+        </div>
+      </div>
+    `;
+  }
+
+  container.innerHTML = `
+    <div style="font-size:13px; color:var(--muted); margin-bottom:20px;">
+      <a href="#home">Home</a> / <a href="#shop">Shop</a> / <a href="#" onclick="filterByCategory('${p.category}')">${p.category}</a> / <span style="color:var(--text);">${p.name}</span>
+    </div>
+
+    <div class="pd-container">
+      <div class="pd-gallery">
+        <img id="pdMainImg" src="${p.images[0]}" class="pd-main-img" alt="${p.name}">
+        <div class="pd-thumbs">${thumbsHTML}</div>
+      </div>
+
+      <div class="pd-info">
+        <div>
+          <span class="product-brand">${p.brand || p.category}</span>
+          <h1 class="pd-title">${p.name}</h1>
+          <div class="product-rating" style="margin-top:6px;">★ ${p.rating || 4.8} <span>(${p.reviewCount || 100} verified reviews)</span></div>
+        </div>
+
+        <div class="pd-price-row">
+          <span class="pd-price">${money(p.price)}</span>
+          ${p.oldPrice ? `<span class="pd-mrp">${money(p.oldPrice)}</span>` : ''}
+          ${p.discountPercent ? `<span class="pd-discount">Save ${p.discountPercent}%</span>` : ''}
+        </div>
+
+        <div class="stock-badge">
+          <div class="stock-dot"></div> In Stock (${p.stockCount || 25} units left in warehouse)
+        </div>
+
+        <p style="color:var(--muted); font-size:14.5px; line-height:1.6;">${p.description}</p>
+
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:6px; font-size:13.5px; color:var(--text);">
+          ${featuresList}
+        </ul>
+
+        <div class="pd-actions">
+          <div class="qty-picker">
+            <button onclick="changeDetailQty(-1)">-</button>
+            <span id="detailQtyVal" class="mono" style="font-weight:700;">1</span>
+            <button onclick="changeDetailQty(1)">+</button>
+          </div>
+          <button class="btn btn-primary" onclick="addToCartDetail('${p.id}')">Add to Cart</button>
+          <button class="btn btn-cyan" onclick="buyNowDetail('${p.id}')">Buy Now</button>
+          <button class="btn btn-ghost" onclick="toggleWishlist('${p.id}')">${isWish ? '❤️ Saved' : '🤍 Wishlist'}</button>
+        </div>
+
+        ${bundleHTML}
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:30px; margin-top:50px;">
+      <div>
+        <h3>Technical Specifications</h3>
+        <table class="specs-table"><tbody>${specsRows}</tbody></table>
+      </div>
+
+      <div>
+        <h3>Customer Sentiment & AI Summary</h3>
+        <div class="review-summary-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <strong>✦ AI Review Summarizer</strong>
+            <button class="btn btn-ghost btn-sm" onclick="summarizeProductReviews('${p.id}', '${p.name}')">Generate Live Summary</button>
+          </div>
+          <div id="aiReviewSummaryBox" style="font-size:13.5px; color:var(--muted); line-height:1.5;">
+            Click above to synthesize customer review feedback using Gemini.
+          </div>
+        </div>
+
+        <h4 style="margin-top:24px; margin-bottom:12px;">Recent Reviews</h4>
+        <div>${reviewsHTML}</div>
+      </div>
+    </div>
+
+    <div style="margin-top:60px;">
+      <h3>Related Products You Might Like</h3>
+      <div class="product-grid" style="margin-top:20px;">
+        ${related.map(r => createProductCardHTML(r)).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function changeMainImage(src, thumbEl) {
+  document.getElementById('pdMainImg').src = src;
+  document.querySelectorAll('.pd-thumb').forEach(t => t.classList.remove('active'));
+  thumbEl.classList.add('active');
+}
+
+let currentDetailQty = 1;
+function changeDetailQty(delta) {
+  currentDetailQty = Math.max(1, currentDetailQty + delta);
+  document.getElementById('detailQtyVal').textContent = currentDetailQty;
+}
+
+function addToCartDetail(prodId) {
+  addToCart(prodId, currentDetailQty);
+}
+
+function buyNowDetail(prodId) {
+  addToCart(prodId, currentDetailQty);
+  openCheckoutModal();
+}
+
+function addBundleToCart(p1, p2) {
+  addToCart(p1, 1);
+  addToCart(p2, 1);
+  showToast('Bundle added to cart with 15% discount!');
+  openCartDrawer();
+}
+
+async function summarizeProductReviews(prodId, prodName) {
+  const box = document.getElementById('aiReviewSummaryBox');
+  box.innerHTML = `<span style="color:var(--cyan);">✦ Asking Gemini to summarize reviews...</span>`;
+  const res = await apiPost('/api/ai', {
+    maxTokens: 180,
+    prompt: `Summarize customer feedback for "${prodName}". Highlight key strengths and any minor flaws in 2-3 concise sentences. Plain text only.`
+  });
+  if (res && res.content && res.content[0]) {
+    box.textContent = res.content[0].text.trim();
+  } else {
+    box.textContent = 'Customer feedback is overwhelmingly positive regarding build quality and performance.';
+  }
+}
+
+/* ---------- CART & WISHLIST ENGINE ---------- */
+function addToCart(prodId, qty = 1) {
+  state.cart[prodId] = (state.cart[prodId] || 0) + qty;
+  saveLocalState();
+  showToast('Item added to cart!');
+}
+
+function removeFromCart(prodId) {
+  delete state.cart[prodId];
+  saveLocalState();
+  renderCartItems();
+}
+
+function setCartQty(prodId, qty) {
+  if (qty <= 0) {
+    delete state.cart[prodId];
+  } else {
+    state.cart[prodId] = qty;
+  }
+  saveLocalState();
+  renderCartItems();
+}
+
+function toggleWishlist(prodId) {
+  const index = state.wishlist.indexOf(prodId);
+  if (index >= 0) {
+    state.wishlist.splice(index, 1);
+    showToast('Removed from Wishlist', '💔');
+  } else {
+    state.wishlist.push(prodId);
+    showToast('Saved to Wishlist!', '❤️');
+  }
+  saveLocalState();
+  // Update button visuals if on screen
+  document.querySelectorAll(`.product-card[data-id="${prodId}"] .wishlist-btn`).forEach(btn => {
+    btn.classList.toggle('active', state.wishlist.includes(prodId));
+    btn.textContent = state.wishlist.includes(prodId) ? '❤️' : '🤍';
+  });
+  if (window.location.hash === '#wishlist') renderWishlistGrid();
+}
+
+function renderWishlistGrid() {
+  const container = document.getElementById('wishlistGrid');
+  const items = state.products.filter(p => state.wishlist.includes(p.id));
+  if (items.length === 0) {
+    container.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:60px 20px; color:var(--muted);">Your wishlist is empty. Browse products and click ❤️ to save items.</div>`;
+    return;
+  }
+  container.innerHTML = items.map(p => createProductCardHTML(p)).join('');
+}
+
+document.getElementById('clearWishlistBtn').addEventListener('click', () => {
+  state.wishlist = [];
+  saveLocalState();
+  renderWishlistGrid();
+});
+
+function renderOffersGrid() {
+  const container = document.getElementById('offersGrid');
+  const offers = state.products.filter(p => p.discountPercent && p.discountPercent >= 15);
+  container.innerHTML = offers.map(p => createProductCardHTML(p)).join('');
+}
+
+/* ---------- CART DRAWER & CHECKOUT ---------- */
+function openCartDrawer() {
+  renderCartItems();
+  document.getElementById('cartDrawer').classList.add('open');
+}
+
+function closeCartDrawer() {
+  document.getElementById('cartDrawer').classList.remove('open');
+}
+
+function renderCartItems() {
+  const container = document.getElementById('cartItems');
+  const entries = Object.entries(state.cart);
+  if (entries.length === 0) {
+    container.innerHTML = `<div style="text-align:center; padding:60px 20px; color:var(--muted);">Your cart is empty.<br><a href="#shop" onclick="closeCartDrawer()" style="color:var(--violet);margin-top:10px;display:inline-block;">Browse Shop →</a></div>`;
+    document.getElementById('cartSubtotal').textContent = money(0);
+    document.getElementById('cartTotal').textContent = money(0);
+    return;
+  }
+
+  let subtotal = 0;
+  container.innerHTML = entries.map(([id, qty]) => {
+    const p = state.products.find(x => x.id === id);
+    if (!p) return '';
+    subtotal += p.price * qty;
+    return `
+      <div class="cart-item">
+        <img src="${p.images[0]}" alt="${p.name}">
+        <div class="cart-item-info">
+          <h5>${p.name}</h5>
+          <div class="price">${money(p.price)}</div>
+          <div class="qty-picker" style="margin-top:8px; display:inline-flex;">
+            <button onclick="setCartQty('${p.id}', ${qty - 1})">-</button>
+            <span class="mono">${qty}</span>
+            <button onclick="setCartQty('${p.id}', ${qty + 1})">+</button>
+          </div>
+        </div>
+        <button onclick="removeFromCart('${p.id}')" style="color:var(--muted);font-size:16px;">✕</button>
+      </div>
+    `;
+  }).join('');
+
+  document.getElementById('cartSubtotal').textContent = money(subtotal);
+  
+  let discount = 0;
+  if (state.appliedPromo === 'NEXUS10') discount = subtotal * 0.10;
+  if (state.appliedPromo === 'AIWELCOME') discount = Math.min(20, subtotal);
+
+  if (discount > 0) {
+    document.getElementById('discountRow').style.display = 'flex';
+    document.getElementById('cartDiscount').textContent = '-' + money(discount);
+  } else {
+    document.getElementById('discountRow').style.display = 'none';
+  }
+
+  document.getElementById('cartTotal').textContent = money(subtotal - discount);
+}
+
+document.getElementById('applyPromoBtn').addEventListener('click', () => {
+  const code = document.getElementById('promoInput').value.trim().toUpperCase();
+  if (code === 'NEXUS10' || code === 'AIWELCOME') {
+    state.appliedPromo = code;
+    showToast(`Promo code ${code} applied successfully!`);
+    renderCartItems();
+  } else {
+    showToast('Invalid promo code. Try NEXUS10', '⚠️');
+  }
+});
+
+document.getElementById('openCheckoutModalBtn').addEventListener('click', () => {
+  if (Object.keys(state.cart).length === 0) {
+    showToast('Your cart is empty', '⚠️');
+    return;
+  }
+  closeCartDrawer();
+  openCheckoutModal();
+});
+
+function openCheckoutModal() {
+  const entries = Object.entries(state.cart);
+  let subtotal = 0;
+  entries.forEach(([id, qty]) => {
+    const p = state.products.find(x => x.id === id);
+    if (p) subtotal += p.price * qty;
+  });
+  let discount = state.appliedPromo === 'NEXUS10' ? subtotal * 0.10 : 0;
+  const finalTotal = subtotal - discount;
+
+  document.getElementById('checkoutModalContent').innerHTML = `
+    <h3>Checkout</h3>
+    <p style="color:var(--muted); font-size:13px; margin:6px 0 20px;">Complete your purchase. Order is saved securely in our backend.</p>
+    <div class="form-row">
+      <div class="field"><label>Full Name</label><input id="coName" required placeholder="John Doe"></div>
+      <div class="field"><label>Email Address</label><input id="coEmail" type="email" required placeholder="john@example.com"></div>
+    </div>
+    <div class="field"><label>Shipping Address</label><input id="coAddress" required placeholder="123 Tech Lane, San Francisco, CA"></div>
+    <div class="form-row">
+      <div class="field"><label>Card Number</label><input id="coCard" placeholder="4242 •••• •••• 4242" required></div>
+      <div class="field"><label>Expiry / CVC</label><input id="coExpiry" placeholder="12/28 · 123" required></div>
+    </div>
+    <div class="cart-total-row" style="margin:16px 0;"><span>Order Total</span><strong style="color:var(--gold);font-size:20px;">${money(finalTotal)}</strong></div>
+    <button class="btn btn-primary" id="placeOrderSubmitBtn" style="width:100%;">Place Order (${money(finalTotal)})</button>
+  `;
+
+  document.getElementById('checkoutOverlay').classList.add('show');
+  document.getElementById('placeOrderSubmitBtn').addEventListener('click', submitOrder);
+}
+
+async function submitOrder() {
+  const btn = document.getElementById('placeOrderSubmitBtn');
+  btn.textContent = 'Processing Payment...';
+  btn.disabled = true;
+
+  const name = document.getElementById('coName').value || 'Guest User';
+  const email = document.getElementById('coEmail').value || '';
+  const address = document.getElementById('coAddress').value || '';
+
+  let total = 0;
+  Object.entries(state.cart).forEach(([id, qty]) => {
+    const p = state.products.find(x => x.id === id);
+    if (p) total += p.price * qty;
+  });
+
+  const res = await apiPost('/api/orders', {
+    name, email, address, items: { ...state.cart }, total
+  });
+
+  // Clear cart
+  state.cart = {};
+  state.appliedPromo = null;
+  saveLocalState();
+
+  let thankYouNote = `Thank you ${name.split(' ')[0]}! Your order has been placed successfully and is being prepped for express shipment.`;
+  
+  // Ask AI for confirmation note
+  const aiNoteRes = await apiPost('/api/ai', {
+    maxTokens: 80,
+    prompt: `Write a short 1-2 sentence warm order confirmation message for customer ${name.split(' ')[0]} who bought gadgets from NovaCart.`
+  });
+  if (aiNoteRes && aiNoteRes.content && aiNoteRes.content[0]) {
+    thankYouNote = aiNoteRes.content[0].text.trim();
+  }
+
+  document.getElementById('checkoutModalContent').innerHTML = `
+    <div style="text-align:center; padding:30px 10px;">
+      <div style="width:64px; height:64px; border-radius:50%; background:rgba(76,242,208,0.15); border:1px solid var(--cyan); color:var(--cyan); font-size:30px; display:flex; align-items:center; justify-content:center; margin:0 auto 16px;">✓</div>
+      <h2>Order Confirmed!</h2>
+      <p style="color:var(--muted); font-size:14.5px; margin-top:10px;">${thankYouNote}</p>
+      <p class="mono" style="color:var(--cyan); font-size:12px; margin-top:14px;">Order ID: ${res ? res.order.id : 'ord_' + Date.now()}</p>
+      <button class="btn btn-primary btn-sm" style="margin-top:24px;" onclick="document.getElementById('checkoutOverlay').classList.remove('show'); window.location.hash='#orders';">View My Orders →</button>
+    </div>
+  `;
+}
+
+async function renderOrdersHistoryView() {
+  const container = document.getElementById('ordersListContainer');
+  container.innerHTML = `<div class="skeleton" style="height:150px;"></div>`;
+
+  const res = await apiGet('/api/orders');
+  if (!res || !Array.isArray(res.orders) || res.orders.length === 0) {
+    container.innerHTML = `<div style="text-align:center; padding:60px 20px; color:var(--muted);">No past orders found. Browse products to place your first order!</div>`;
+    return;
+  }
+
+  container.innerHTML = res.orders.map(ord => `
+    <div style="background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:20px; margin-bottom:16px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+        <strong class="mono" style="color:var(--cyan);">${ord.id}</strong>
+        <span style="font-size:12px; color:var(--muted);">${new Date(ord.placedAt).toLocaleDateString()}</span>
+      </div>
+      <p style="font-size:13.5px; color:var(--text);">Recipient: ${ord.name} (${ord.email || 'N/A'})</p>
+      <div style="margin-top:10px; font-size:13px; color:var(--muted);">
+        Items: ${Object.entries(ord.items).map(([id, qty]) => {
+          const p = state.products.find(x => x.id === id);
+          return p ? `${p.name} (x${qty})` : id;
+        }).join(', ')}
+      </div>
+      <div style="margin-top:12px; display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-weight:700; color:var(--gold); font-family:'Space Grotesk',sans-serif; font-size:18px;">Total: ${money(ord.total)}</span>
+        <span class="badge-tag" style="position:static; color:var(--green); border-color:rgba(74,222,128,0.3);">${ord.status || 'Confirmed'}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ---------- AI CHAT ASSISTANT ENGINE ---------- */
+document.getElementById('mainChatSendBtn').addEventListener('click', sendMainChat);
+document.getElementById('mainChatInput').addEventListener('keydown', (e) => { if (e.key === 'Enter') sendMainChat(); });
+document.getElementById('clearChatBtn').addEventListener('click', () => {
+  document.getElementById('mainChatMsgs').innerHTML = `<div class="msg-bubble ai">Chat cleared. Ask me anything!</div>`;
+  state.chatHistory = [];
+});
+
+document.getElementById('drawerChatSendBtn').addEventListener('click', sendDrawerChat);
+document.getElementById('drawerChatInput').addEventListener('keydown', (e) => { if (e.key === 'Enter') sendDrawerChat(); });
+
+async function sendMainChat() {
+  const input = document.getElementById('mainChatInput');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+
+  const msgsBox = document.getElementById('mainChatMsgs');
+  appendMsg(msgsBox, 'user', text);
+  state.chatHistory.push({ role: 'user', content: text });
+
+  const loadingEl = appendMsg(msgsBox, 'ai', '✦ Gemini is searching catalog & thinking...');
+  const reply = await queryGeminiChat(state.chatHistory);
+  loadingEl.remove();
+
+  appendAiMessageWithProductCards(msgsBox, reply);
+  state.chatHistory.push({ role: 'assistant', content: reply });
+}
+
+async function sendDrawerChat() {
+  const input = document.getElementById('drawerChatInput');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+
+  const msgsBox = document.getElementById('drawerChatMsgs');
+  appendMsg(msgsBox, 'user', text);
+
+  const loadingEl = appendMsg(msgsBox, 'ai', '✦ Thinking...');
+  const reply = await queryGeminiChat([{ role: 'user', content: text }]);
+  loadingEl.remove();
+
+  appendAiMessageWithProductCards(msgsBox, reply);
+}
+
+function appendMsg(container, role, text) {
+  const div = document.createElement('div');
+  div.className = `msg-bubble ${role}`;
+  div.textContent = text;
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+  return div;
+}
+
+function appendAiMessageWithProductCards(container, text) {
+  const div = document.createElement('div');
+  div.className = 'msg-bubble ai';
+  div.textContent = text;
+
+  // Check if response mentions any product names from catalog
+  const matched = state.products.filter(p => text.toLowerCase().includes(p.name.toLowerCase())).slice(0, 2);
+  matched.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'chat-product-card';
+    card.innerHTML = `
+      <img src="${p.images[0]}" alt="${p.name}">
+      <div class="info">
+        <h5>${p.name}</h5>
+        <div class="price">${money(p.price)}</div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="addToCart('${p.id}')">Add to Cart</button>
+    `;
+    div.appendChild(card);
+  });
+
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+}
+
+async function queryGeminiChat(turns) {
+  const catalogCompact = state.products.map(p => ({ id: p.id, name: p.name, category: p.category, price: p.price, desc: p.description }));
+  const systemInstruction = `You are the NovaCart AI Shopping Copilot. Catalog JSON: ${JSON.stringify(catalogCompact)}. Only recommend items in this catalog. Mention real prices. Keep replies conversational, helpful, and concise.`;
+
+  const res = await apiPost('/api/chat', {
+    messages: [{ role: 'user', content: systemInstruction }, ...turns]
+  });
+
+  if (res && res.content && res.content[0]) {
+    return res.content[0].text;
+  }
+  return "I'm having trouble connecting to Gemini backend right now. Make sure GEMINI_API_KEY is set in .env";
+}
+
+/* ---------- SIDE-BY-SIDE COMPARISON ---------- */
+function populateCompareDropdowns() {
+  const s1 = document.getElementById('compareSelect1');
+  const s2 = document.getElementById('compareSelect2');
+  const options = state.products.map(p => `<option value="${p.id}">${p.name} ($${p.price})</option>`).join('');
+  s1.innerHTML = options;
+  s2.innerHTML = options;
+  if (state.products.length >= 2) s2.selectedIndex = 1;
+}
+
+document.getElementById('runCompareBtn').addEventListener('click', async () => {
+  const p1Id = document.getElementById('compareSelect1').value;
+  const p2Id = document.getElementById('compareSelect2').value;
+  const box = document.getElementById('compareResultsBox');
+  box.innerHTML = `<div style="text-align:center; padding:30px; color:var(--cyan);">✦ Running Gemini side-by-side comparison...</div>`;
+
+  const res = await apiPost('/api/ai/compare', { productIds: [p1Id, p2Id] });
+  if (!res || !res.comparison) {
+    box.innerHTML = `<div style="color:var(--red);">Could not generate comparison.</div>`;
+    return;
+  }
+
+  box.innerHTML = `
+    <div style="background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:20px; white-space:pre-line; font-size:14px; line-height:1.6;">
+      ${res.comparison}
+    </div>
+  `;
+});
+
+/* ---------- HERO CANVAS PARTICLES ---------- */
+function initHeroCanvas() {
+  const canvas = document.getElementById('heroCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  const colors = ['#B084FF', '#FF5FA2', '#4CF2D0'];
+
+  function resize() {
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * devicePixelRatio;
+    canvas.height = rect.height * devicePixelRatio;
+    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    particles = Array.from({ length: 40 }, () => ({
+      x: Math.random() * rect.width, y: Math.random() * rect.height,
+      vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5,
+      r: Math.random() * 2 + 1, c: colors[Math.floor(Math.random() * colors.length)]
+    }));
+  }
+
+  function draw() {
+    const rect = canvas.getBoundingClientRect();
+    ctx.clearRect(0, 0, rect.width, rect.height);
+    for (const p of particles) {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > rect.width) p.vx *= -1;
+      if (p.y < 0 || p.y > rect.height) p.vy *= -1;
+      ctx.fillStyle = p.c;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
+    }
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const a = particles[i], b = particles[j];
+        const d = Math.hypot(a.x - b.x, a.y - b.y);
+        if (d < 100) {
+          ctx.strokeStyle = `rgba(176,132,255,${1 - d / 100})`;
+          ctx.lineWidth = 0.5;
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  resize(); draw();
+}
+
+function startCountdownTimer() {
+  let seconds = 31335;
+  setInterval(() => {
+    seconds--;
+    if (seconds < 0) seconds = 86400;
+    const h = String(Math.floor(seconds / 3600)).padStart(2, '0');
+    const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+    const s = String(seconds % 60).padStart(2, '0');
+    const el = document.getElementById('saleCountdown');
+    if (el) el.textContent = `${h}h ${m}m ${s}s`;
+  }, 1000);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initApp();
+  initHeroCanvas();
+});
+</script>
+</body>
+</html>

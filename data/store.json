@@ -1,0 +1,1314 @@
+{
+  "products": [
+    {
+      "id": "p1",
+      "name": "Aria Neural ANC Earbuds",
+      "brand": "NEXUS",
+      "category": "Audio",
+      "price": 179,
+      "oldPrice": 219,
+      "discountPercent": 18,
+      "rating": 4.8,
+      "reviewCount": 342,
+      "inStock": true,
+      "stockCount": 45,
+      "isAiRecommended": true,
+      "aiBadgeReason": "Top Pick for Active Noise Cancellation",
+      "tags": [
+        "audio",
+        "wireless",
+        "anc",
+        "earbuds",
+        "bluetooth"
+      ],
+      "description": "Next-generation true wireless earbuds featuring adaptive neural noise cancellation that learns your audio environment in real-time.",
+      "features": [
+        "Adaptive Neural ANC (up to 45dB reduction)",
+        "30-Hour total battery life with wireless charging case",
+        "Spatial Audio with dynamic head tracking",
+        "IPX5 water and sweat resistance"
+      ],
+      "specifications": {
+        "Bluetooth Version": "5.3",
+        "Battery Life": "8h earbuds + 22h case",
+        "Noise Cancellation": "Active Neural ANC",
+        "Water Resistance": "IPX5",
+        "Weight": "4.8g per earbud"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1518444065439-e933c06ce9cd?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1524678606370-a47ad25cb82a?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {
+          "author": "Alex M.",
+          "rating": 5,
+          "comment": "The neural noise cancelling is insane. It silences plane engines effortlessly."
+        },
+        {
+          "author": "Sarah K.",
+          "rating": 5,
+          "comment": "Super comfy fit for running and sound stage is wide."
+        },
+        {
+          "author": "David P.",
+          "rating": 4,
+          "comment": "Great sound, wireless charging works flawless."
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "name": "Nova Spatial Dolby Soundbar",
+      "brand": "AcousticLab",
+      "category": "Audio",
+      "price": 349,
+      "oldPrice": 399,
+      "discountPercent": 13,
+      "rating": 4.7,
+      "reviewCount": 184,
+      "inStock": true,
+      "stockCount": 18,
+      "isAiRecommended": false,
+      "aiBadgeReason": null,
+      "tags": [
+        "audio",
+        "soundbar",
+        "home theater",
+        "dolby atmos",
+        "tv"
+      ],
+      "description": "Immersive 5.1 channel room-aware soundbar tuned with on-device acoustic modeling for cinema-grade home entertainment.",
+      "features": [
+        "Dolby Atmos & DTS:X Spatial 3D Audio",
+        "Dedicated wireless subwoofer with punchy bass",
+        "AI Voice Clarity enhancement for dialogue",
+        "HDMI eARC & Optical pass-through"
+      ],
+      "specifications": {
+        "Channels": "5.1 Surround",
+        "Total Power": "420W",
+        "Connectivity": "HDMI eARC, Bluetooth 5.2, Optical",
+        "Subwoofer": "Wireless 8-inch"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {
+          "author": "James R.",
+          "rating": 5,
+          "comment": "Movie night completely changed. Clear voices and thunderous bass."
+        },
+        {
+          "author": "Elena G.",
+          "rating": 4,
+          "comment": "Easy setup with eARC cable included."
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "name": "Apex Pro Studio ANC Headphones",
+      "brand": "AudioCraft",
+      "category": "Audio",
+      "price": 299,
+      "oldPrice": 349,
+      "discountPercent": 14,
+      "rating": 4.9,
+      "reviewCount": 512,
+      "inStock": true,
+      "stockCount": 29,
+      "isAiRecommended": true,
+      "aiBadgeReason": "Best Overall Sound Quality & Comfort",
+      "tags": [
+        "audio",
+        "headphones",
+        "anc",
+        "studio",
+        "over-ear"
+      ],
+      "description": "Over-ear wireless studio monitors with custom 40mm titanium drivers and ultra-soft memory foam earcups for professional audio work.",
+      "features": [
+        "Custom 40mm Titanium Drivers for ultra-low distortion",
+        "40-Hour battery playback with fast charge (10 min = 5 hrs)",
+        "Transparency Mode and Auto-Pause wear sensors",
+        "Lightweight magnesium alloy frame"
+      ],
+      "specifications": {
+        "Driver Size": "40mm Titanium",
+        "Frequency Response": "10Hz - 40kHz",
+        "Battery Life": "40 Hours",
+        "Weight": "254g"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1484704849700-f032a568e944?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {
+          "author": "Chris B.",
+          "rating": 5,
+          "comment": "Best headphones I have ever owned. Soft pads, zero fatigue after 8 hours."
+        },
+        {
+          "author": "Marcus L.",
+          "rating": 5,
+          "comment": "Crisp highs and deep controlled bass."
+        }
+      ]
+    },
+    {
+      "id": "p4",
+      "name": "Pulse Health & Recovery Ring",
+      "brand": "Biometrics",
+      "category": "Wearables",
+      "price": 249,
+      "oldPrice": 279,
+      "discountPercent": 11,
+      "rating": 4.6,
+      "reviewCount": 210,
+      "inStock": true,
+      "stockCount": 33,
+      "isAiRecommended": true,
+      "aiBadgeReason": "AI Daily Sleep & Readiness Score",
+      "tags": [
+        "wearables",
+        "health",
+        "smart ring",
+        "sleep tracker",
+        "fitness"
+      ],
+      "description": "Sleek titanium smart ring offering continuous HRV tracking, body temperature monitoring, and AI recovery scoring with a 6-day battery.",
+      "features": [
+        "Medical-grade optical sensors for heart rate & HRV",
+        "AI Sleep Architecture tracking with daily Readiness Score",
+        "Waterproof up to 100 meters (10 ATM)",
+        "Durable aerospace-grade titanium finish"
+      ],
+      "specifications": {
+        "Material": "Aerospace Titanium",
+        "Battery Life": "6-7 Days",
+        "Water Rating": "100m (10 ATM)",
+        "Compatibility": "iOS & Android"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1559563362-cac6f35a2c83?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {
+          "author": "Rachel V.",
+          "rating": 5,
+          "comment": "Love not having a screen on my wrist while sleeping. Readiness score is scary accurate!"
+        }
+      ]
+    },
+    {
+      "id": "p5",
+      "name": "Horizon AI Ultra-Book 14\"",
+      "brand": "NEXUS",
+      "category": "Laptops",
+      "price": 1299,
+      "oldPrice": 1499,
+      "discountPercent": 13,
+      "rating": 4.9,
+      "reviewCount": 165,
+      "inStock": true,
+      "stockCount": 12,
+      "isAiRecommended": true,
+      "aiBadgeReason": "Top Choice for Developers & Creators",
+      "tags": [
+        "laptops",
+        "ultrabook",
+        "ai",
+        "macbook alternative",
+        "computing"
+      ],
+      "description": "Ultra-thin aluminum laptop powered by a 16-core NPU for local AI execution, 32GB LPDDR5X RAM, and 120Hz OLED screen.",
+      "features": [
+        "16-Core Neural Processing Unit (45 TOPS AI performance)",
+        "14.2\" 3K 120Hz OLED Touch Display (100% DCI-P3)",
+        "32GB LPDDR5X RAM & 1TB NVMe Gen4 SSD",
+        "All-day 18-hour battery life with 65W GaN charging"
+      ],
+      "specifications": {
+        "Processor": "Next-Gen AI Octa-Core",
+        "RAM": "32GB LPDDR5X",
+        "Storage": "1TB PCIe 4.0 SSD",
+        "Display": "14.2\" 3.2K OLED 120Hz",
+        "Weight": "1.24 kg"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {
+          "author": "Devin C.",
+          "rating": 5,
+          "comment": "Compiles code effortlessly and runs local LLMs at 40 tokens/sec!"
+        }
+      ]
+    },
+    {
+      "id": "p6",
+      "name": "CyberDesk Ergonomic Mechanical Keyboard",
+      "brand": "KeyCraft",
+      "category": "Peripherals",
+      "price": 189,
+      "oldPrice": 219,
+      "discountPercent": 14,
+      "rating": 4.8,
+      "reviewCount": 290,
+      "inStock": true,
+      "stockCount": 25,
+      "isAiRecommended": false,
+      "aiBadgeReason": null,
+      "tags": [
+        "peripherals",
+        "keyboard",
+        "mechanical",
+        "wireless",
+        "rgb"
+      ],
+      "description": "Gasket-mounted mechanical keyboard with hot-swappable tactile switches, programmable OLED knob, and tri-mode wireless connectivity.",
+      "features": [
+        "Hot-swappable pre-lubed tactile switches",
+        "CNC anodized aluminum body with gasket mount",
+        "Tri-mode connection (Bluetooth 5.1, 2.4GHz, USB-C)",
+        "Per-key RGB lighting with dynamic macros"
+      ],
+      "specifications": {
+        "Layout": "75% Compact",
+        "Switches": "Pre-lubed Tactile",
+        "Battery": "4000mAh (Up to 200h)",
+        "Keycaps": "Double-shot PBT"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {
+          "author": "Toby H.",
+          "rating": 5,
+          "comment": "Thocky sound out of the box. Typing feel is pure butter."
+        }
+      ]
+    },
+    {
+      "id": "p7",
+      "name": "Spectre Precision Wireless Mouse",
+      "brand": "KeyCraft",
+      "category": "Peripherals",
+      "price": 99,
+      "oldPrice": 119,
+      "discountPercent": 17,
+      "rating": 4.7,
+      "reviewCount": 415,
+      "inStock": true,
+      "stockCount": 50,
+      "isAiRecommended": false,
+      "aiBadgeReason": null,
+      "tags": [
+        "peripherals",
+        "mouse",
+        "ergonomic",
+        "wireless",
+        "gaming"
+      ],
+      "description": "Ultra-lightweight 49g ergonomic wireless gaming mouse with 26,000 DPI optical sensor and zero latency 8K polling rate.",
+      "features": [
+        "Featherlight 49-gram magnesium shell",
+        "26K DPI Gen3 Optical Sensor",
+        "8,000Hz polling rate for sub-millisecond response",
+        "90-Hour continuous gaming battery"
+      ],
+      "specifications": {
+        "Weight": "49 grams",
+        "Sensor": "26,000 DPI Optical",
+        "Polling Rate": "8000Hz Wireless",
+        "Battery Life": "90 Hours"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {
+          "author": "Kevin L.",
+          "rating": 5,
+          "comment": "Glides like air on mousepad. Zero double-clicking issues."
+        }
+      ]
+    },
+    {
+      "id": "p8",
+      "name": "Halo Vision 4K AI Security Camera",
+      "brand": "NEXUS",
+      "category": "Smart Home",
+      "price": 159,
+      "oldPrice": 189,
+      "discountPercent": 16,
+      "rating": 4.7,
+      "reviewCount": 178,
+      "inStock": true,
+      "stockCount": 22,
+      "isAiRecommended": true,
+      "aiBadgeReason": "100% On-Device AI Privacy Guard",
+      "tags": [
+        "smart home",
+        "security",
+        "camera",
+        "privacy",
+        "4k"
+      ],
+      "description": "Outdoor weatherproof 4K camera with local neural network facial & vehicle detection — no footage ever leaves your encrypted local hub.",
+      "features": [
+        "4K HDR sensor with Starlight Color Night Vision",
+        "On-device facial, pet, and vehicle AI recognition",
+        "Solar panel powered option with lifetime battery",
+        "End-to-end local encrypted storage (MicroSD + NAS)"
+      ],
+      "specifications": {
+        "Resolution": "4K Ultra HD (3840 x 2160)",
+        "Night Vision": "Color Night Vision LED",
+        "Power": "Battery + Solar Ready",
+        "Weatherproof": "IP67 Rated"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1585771724684-38269d6639fd?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {
+          "author": "Dan S.",
+          "rating": 5,
+          "comment": "Finally a camera that doesn’t require a monthly subscription!"
+        }
+      ]
+    },
+    {
+      "id": "p9",
+      "name": "Orbit AI Desk Companion Robot",
+      "brand": "RoboTech",
+      "category": "Robotics",
+      "price": 349,
+      "oldPrice": 399,
+      "discountPercent": 13,
+      "rating": 4.9,
+      "reviewCount": 142,
+      "inStock": true,
+      "stockCount": 15,
+      "isAiRecommended": true,
+      "aiBadgeReason": "Interactive AI Productivity Buddy",
+      "tags": [
+        "robotics",
+        "desk companion",
+        "ai",
+        "gadget",
+        "smart desk"
+      ],
+      "description": "An interactive desk companion robot that tracks tasks, reminds you to hydrate, monitors ergonomic posture, and expresses mood through OLED eyes.",
+      "features": [
+        "Expressive OLED face display with voice interaction",
+        "Integrated Pomodoro timer & task assistant",
+        "Posture camera with gentle break reminders",
+        "360-degree motor swivel and desk navigation"
+      ],
+      "specifications": {
+        "Display": "2.4\" Curved OLED",
+        "Microphones": "Quad-array beamforming",
+        "Connectivity": "Wi-Fi 6 & Bluetooth",
+        "Battery": "4 Hours unplugged / USB-C docked"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {
+          "author": "Emily T.",
+          "rating": 5,
+          "comment": "Super cute and surprisingly helpful for maintaining focus during work hours!"
+        }
+      ]
+    },
+    {
+      "id": "p10",
+      "name": "Vertex 34\" Curved UltraWide OLED",
+      "brand": "ViewMaster",
+      "category": "Displays",
+      "price": 499,
+      "oldPrice": 599,
+      "discountPercent": 17,
+      "rating": 4.9,
+      "reviewCount": 264,
+      "inStock": true,
+      "stockCount": 8,
+      "isAiRecommended": true,
+      "aiBadgeReason": "Ultimate Immersive Workstation",
+      "tags": [
+        "displays",
+        "monitor",
+        "ultrawide",
+        "oled",
+        "gaming"
+      ],
+      "description": "34-inch 175Hz WQHD Quantum Dot OLED curved monitor with 0.03ms response time and USB-C 90W power delivery hub.",
+      "features": [
+        "Quantum Dot OLED panel (1,000,000:1 contrast ratio)",
+        "175Hz Refresh rate with 0.03ms GTG response",
+        "1800R Curve radius for ergonomic viewing",
+        "Built-in KVM switch and USB-C 90W charging"
+      ],
+      "specifications": {
+        "Screen Size": "34-inch 21:9 Curved",
+        "Resolution": "3440 x 1440 WQHD",
+        "Refresh Rate": "175Hz",
+        "Panel Type": "QD-OLED"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1547082299-de196ea013d6?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {
+          "author": "Marcus V.",
+          "rating": 5,
+          "comment": "Black levels are infinite and colors pop like crazy!"
+        }
+      ]
+    },
+    {
+      "id": "p11",
+      "name": "Drift Mini 4K Subject Drone",
+      "brand": "RoboTech",
+      "category": "Robotics",
+      "price": 229,
+      "oldPrice": 259,
+      "discountPercent": 12,
+      "rating": 4.6,
+      "reviewCount": 198,
+      "inStock": true,
+      "stockCount": 16,
+      "isAiRecommended": false,
+      "aiBadgeReason": null,
+      "tags": [
+        "robotics",
+        "drone",
+        "4k",
+        "camera",
+        "autonomous"
+      ],
+      "description": "Pocket-sized 249g drone with 3-axis gimbal, 4K camera, 31-min flight time, and obstacle-avoidance subject tracking.",
+      "features": [
+        "Ultra-light 249g foldable design (No FAA registration)",
+        "4K/60fps Video with 3-axis mechanical gimbal",
+        "Omnidirectional optical obstacle sensing",
+        "31-Minute battery flight per charge"
+      ],
+      "specifications": {
+        "Weight": "249 grams",
+        "Camera": "4K 60fps 1/1.3-inch CMOS",
+        "Flight Time": "31 Minutes",
+        "Range": "10 km HD Transmission"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {
+          "author": "Lucas P.",
+          "rating": 5,
+          "comment": "Folds tiny, stays locked in wind, shots look professional!"
+        }
+      ]
+    },
+    {
+      "id": "p12",
+      "name": "Flux 3-in-1 Magnetic Charge Mat",
+      "brand": "NEXUS",
+      "category": "Accessories",
+      "price": 79,
+      "oldPrice": 99,
+      "discountPercent": 20,
+      "rating": 4.8,
+      "reviewCount": 380,
+      "inStock": true,
+      "stockCount": 60,
+      "isAiRecommended": false,
+      "aiBadgeReason": null,
+      "tags": [
+        "accessories",
+        "charger",
+        "magsafe",
+        "wireless",
+        "desk"
+      ],
+      "description": "Fast 15W wireless charging mat that simultaneously powers phone, earbuds, and smartwatch with intelligent heat regulation.",
+      "features": [
+        "15W MagSafe fast charging for iPhone & Android",
+        "Dedicated watch puck & AirPods wireless recess",
+        "Premium woven fabric with non-slip weighted aluminum base",
+        "Overheat and object protection circuitry"
+      ],
+      "specifications": {
+        "Total Output": "25W max",
+        "MagSafe Pad": "15W Fast Charge",
+        "Material": "Braided fabric & Aluminum",
+        "Input": "USB-C PD 30W"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1622445268465-8438165a268e?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1586816879360-e5305b4ee596?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {
+          "author": "Nora W.",
+          "rating": 5,
+          "comment": "Cleaned up all cables on my nightstand!"
+        }
+      ]
+    },
+    {
+      "id": "p13",
+      "name": "Aegis Smart Voice Hub & Speaker",
+      "brand": "NEXUS",
+      "category": "Smart Home",
+      "price": 129,
+      "oldPrice": 149,
+      "discountPercent": 13,
+      "rating": 4.6,
+      "reviewCount": 167,
+      "inStock": true,
+      "stockCount": 30,
+      "isAiRecommended": false,
+      "aiBadgeReason": null,
+      "tags": [
+        "smart home",
+        "speaker",
+        "voice hub",
+        "assistant",
+        "audio"
+      ],
+      "description": "Smart home hub featuring high-fidelity 360-degree acoustics, Matter protocol smart home control, and local processing.",
+      "features": [
+        "360-Degree spatial audio with 3-inch woofer",
+        "Integrated Matter & Thread smart home bridge",
+        "Physical privacy mute switch for mic array",
+        "Ambient LED light ring showing device status"
+      ],
+      "specifications": {
+        "Wireless": "Wi-Fi 6E, Thread, Matter",
+        "Speakers": "1x Woofer, 2x Tweeters",
+        "Microphones": "Far-field 6-mic array"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1543512214-318c7553f230?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {
+          "author": "Oliver G.",
+          "rating": 5,
+          "comment": "Controls all smart lights instantly and sounds surprisingly warm."
+        }
+      ]
+    },
+    {
+      "id": "p14",
+      "name": "VisionX Haptic VR/AR Headset",
+      "brand": "Futura",
+      "category": "Gaming",
+      "price": 599,
+      "oldPrice": 699,
+      "discountPercent": 14,
+      "rating": 4.9,
+      "reviewCount": 130,
+      "inStock": true,
+      "stockCount": 10,
+      "isAiRecommended": true,
+      "aiBadgeReason": "Top Next-Gen Mixed Reality Experience",
+      "tags": [
+        "gaming",
+        "vr",
+        "ar",
+        "mixed reality",
+        "headset"
+      ],
+      "description": "Standalone 4K per-eye Micro-OLED spatial headset with high-resolution color passthrough, hand tracking, and haptic controllers.",
+      "features": [
+        "Dual 4K Micro-OLED displays (120Hz refresh rate)",
+        "Full-color high resolution passthrough for AR apps",
+        "Precise sub-millimeter eye & gesture tracking",
+        "Wireless PC VR streaming via Wi-Fi 6E"
+      ],
+      "specifications": {
+        "Per-Eye Resolution": "3840 x 2160 Micro-OLED",
+        "Field of View": "110 Degrees",
+        "Refresh Rate": "90Hz / 120Hz",
+        "Weight": "480g"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1622979135225-d2ba269bc1bd?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {
+          "author": "Jason K.",
+          "rating": 5,
+          "comment": "Felt like stepping 10 years into the future. Sharpness is incredible!"
+        }
+      ]
+    },
+    {
+      "id": "p15",
+      "name": "Lumina Smart Ergonomic Desk Lamp",
+      "brand": "Lumiere",
+      "category": "Smart Home",
+      "price": 89,
+      "oldPrice": 109,
+      "discountPercent": 18,
+      "rating": 4.7,
+      "reviewCount": 210,
+      "inStock": true,
+      "stockCount": 35,
+      "isAiRecommended": false,
+      "aiBadgeReason": null,
+      "tags": [
+        "smart home",
+        "lighting",
+        "desk lamp",
+        "circadian",
+        "office"
+      ],
+      "description": "Architectural desk light with ambient circadian color tuning, auto-dimming brightness sensors, and built-in Qi charging base.",
+      "features": [
+        "Circadian rhythm auto color temperature shift (2700K - 6500K)",
+        "Asymmetric optical lens prevents monitor reflection glare",
+        "Integrated 10W wireless charging base",
+        "Touch slider and app smart control"
+      ],
+      "specifications": {
+        "Brightness": "1000 Lumens max",
+        "Color Temp": "2700K - 6500K",
+        "CRI": "> 95 Ra (Sunlight accuracy)",
+        "Wireless Charge": "10W Base"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1534353473418-4cfa6c56fd38?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {
+          "author": "Jessica B.",
+          "rating": 5,
+          "comment": "Reduces eye strain tremendously during late night coding sessions."
+        }
+      ]
+    },
+    {
+      "id": "p16",
+      "name": "Titan GaN 100W Fast Charger",
+      "brand": "NEXUS",
+      "category": "Accessories",
+      "price": 59,
+      "oldPrice": 69,
+      "discountPercent": 14,
+      "rating": 4.9,
+      "reviewCount": 490,
+      "inStock": true,
+      "stockCount": 75,
+      "isAiRecommended": false,
+      "aiBadgeReason": null,
+      "tags": [
+        "accessories",
+        "charger",
+        "gan",
+        "fast charge",
+        "usb-c"
+      ],
+      "description": "Ultra-compact 4-port GaN III wall charger delivering up to 100W PD power to charge laptop, phone, and tablet simultaneously.",
+      "features": [
+        "GaN III Semiconductor technology (40% smaller than OEM chargers)",
+        "3x USB-C PD + 1x USB-A ports",
+        "Dynamic Power Sharing between connected devices",
+        "Foldable wall prongs for lightweight travel"
+      ],
+      "specifications": {
+        "Max Output": "100W Total",
+        "Ports": "3x USB-C, 1x USB-A",
+        "Protocols": "PD 3.0, PPS, QC 4.0",
+        "Weight": "195g"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {
+          "author": "Brian F.",
+          "rating": 5,
+          "comment": "Replaced 3 brick chargers in my backpack. Charges my MacBook Pro at full speed."
+        }
+      ]
+    },
+    {
+      "id": "p17",
+      "name": "Voyager Leather Laptop Sleeve 15\"",
+      "brand": "Craftsman",
+      "category": "Accessories",
+      "price": 69,
+      "oldPrice": 89,
+      "discountPercent": 22,
+      "rating": 4.8,
+      "reviewCount": 145,
+      "inStock": true,
+      "stockCount": 20,
+      "isAiRecommended": false,
+      "aiBadgeReason": null,
+      "tags": [
+        "accessories",
+        "sleeve",
+        "leather",
+        "bag",
+        "laptop"
+      ],
+      "description": "Handcrafted full-grain leather sleeve with shockproof memory foam padding and magnetic closure for 14-16 inch laptops.",
+      "features": [
+        "Full-grain patina leather exterior",
+        "Microfiber inner lining with corner corner-guard impact pads",
+        "Concealed magnetic latching flap",
+        "Rear slip pocket for documents and notebook"
+      ],
+      "specifications": {
+        "Material": "Full-grain Italian Leather",
+        "Fit": "Laptops up to 15.6 inch",
+        "Closure": "Magnetic",
+        "Color": "Espresso Brown"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {
+          "author": "Samantha R.",
+          "rating": 5,
+          "comment": "Smells amazing, fits my laptop like a glove!"
+        }
+      ]
+    },
+    {
+      "id": "p18",
+      "name": "Pulse Pro GPS Fitness Smartwatch",
+      "brand": "Biometrics",
+      "category": "Wearables",
+      "price": 199,
+      "oldPrice": 239,
+      "discountPercent": 17,
+      "rating": 4.7,
+      "reviewCount": 310,
+      "inStock": true,
+      "stockCount": 28,
+      "isAiRecommended": false,
+      "aiBadgeReason": null,
+      "tags": [
+        "wearables",
+        "smartwatch",
+        "fitness",
+        "gps",
+        "heart rate"
+      ],
+      "description": "Rugged AMOLED GPS smartwatch with 50+ sport tracking modes, VO2 max estimation, ECG monitoring, and offline maps.",
+      "features": [
+        "1.4\" Always-On Sapphire Glass AMOLED Screen",
+        "Dual-frequency multi-GNSS GPS positioning",
+        "Continuous ECG, SpO2, and Stress tracking",
+        "14-Day battery life in smartwatch mode"
+      ],
+      "specifications": {
+        "Display": "1.4\" AMOLED Sapphire",
+        "Water Resistance": "5 ATM (50 meters)",
+        "Battery Life": "14 Days",
+        "GPS": "Dual-Band Multi-GNSS"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {
+          "author": "Eric H.",
+          "rating": 5,
+          "comment": "GPS lock happens instantly and screen is readable under direct bright sun."
+        }
+      ]
+    },
+    {
+      "id": "p19",
+      "name": "SonicPods Mini TWS Earbuds",
+      "brand": "AudioCraft",
+      "category": "Audio",
+      "price": 89,
+      "oldPrice": 109,
+      "discountPercent": 18,
+      "rating": 4.5,
+      "reviewCount": 280,
+      "inStock": true,
+      "stockCount": 40,
+      "isAiRecommended": false,
+      "aiBadgeReason": null,
+      "tags": [
+        "audio",
+        "earbuds",
+        "wireless",
+        "compact",
+        "budget"
+      ],
+      "description": "Lightweight budget-friendly TWS earbuds with punchy bass, clear mic calls, and pocket-sized charging case.",
+      "features": [
+        "10mm Composite dynamic drivers",
+        "24-Hour overall battery life",
+        "Touch controls for playback & call response",
+        "IPX4 splash resistance"
+      ],
+      "specifications": {
+        "Bluetooth": "5.3",
+        "Playback": "6h earbuds + 18h case",
+        "Weight": "3.9g"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {
+          "author": "Chloe M.",
+          "rating": 4,
+          "comment": "Unbeatable sound quality for under $100."
+        }
+      ]
+    },
+    {
+      "id": "p20",
+      "name": "RoboClean X9 Automated Vacuum Mop",
+      "brand": "RoboTech",
+      "category": "Smart Home",
+      "price": 429,
+      "oldPrice": 499,
+      "discountPercent": 14,
+      "rating": 4.8,
+      "reviewCount": 156,
+      "inStock": true,
+      "stockCount": 11,
+      "isAiRecommended": true,
+      "aiBadgeReason": "AI LiDAR Obstacle & Pet Guard",
+      "tags": [
+        "smart home",
+        "robot vacuum",
+        "cleaner",
+        "mop",
+        "ai"
+      ],
+      "description": "LiDAR 3D AI obstacle-avoiding robot vacuum & sonic mopping system with auto-emptying dustbin dock.",
+      "features": [
+        "6,000Pa Extreme suction power",
+        "3D LiDAR SLAM mapping & room recognition",
+        "Dual rotating sonic mop pads with automatic liftoff on carpets",
+        "Self-emptying base holding up to 60 days of dust"
+      ],
+      "specifications": {
+        "Suction Power": "6000Pa",
+        "Navigation": "3D LiDAR + AI Camera",
+        "Dustbin Capacity": "2.5L Auto Dock",
+        "Runtime": "180 Minutes"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {
+          "author": "Megan W.",
+          "rating": 5,
+          "comment": "Cleans under couches and avoids pet toys effortlessly!"
+        }
+      ]
+    },
+    {
+      "id": "p21",
+      "name": "AeroBlade Ergonomic Gaming Chair",
+      "brand": "Futura",
+      "category": "Gaming",
+      "price": 279,
+      "oldPrice": 329,
+      "discountPercent": 15,
+      "rating": 4.7,
+      "reviewCount": 112,
+      "inStock": true,
+      "stockCount": 14,
+      "isAiRecommended": false,
+      "aiBadgeReason": null,
+      "tags": [
+        "gaming",
+        "chair",
+        "ergonomic",
+        "office",
+        "furniture"
+      ],
+      "description": "Breathable mesh ergonomic gaming chair with 4D armrests, dynamic lumbar support, and 135-degree recline.",
+      "features": [
+        "Full breathable Korean elastomer mesh back",
+        "Self-adjusting dynamic lower lumbar support",
+        "4D Omni-directional armrests",
+        "Heavy-duty Class 4 gas lift cylinder"
+      ],
+      "specifications": {
+        "Max Weight": "150 kg (330 lbs)",
+        "Recline Angle": "90 to 135 degrees",
+        "Frame": "Reinforced Steel",
+        "Warranty": "3 Years"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {
+          "author": "Sean M.",
+          "rating": 5,
+          "comment": "Saved my back during long work and gaming sessions!"
+        }
+      ]
+    },
+    {
+      "id": "p22",
+      "name": "Quantum 7-in-1 USB-C Hub Adapter",
+      "brand": "KeyCraft",
+      "category": "Accessories",
+      "price": 49,
+      "oldPrice": 59,
+      "discountPercent": 17,
+      "rating": 4.6,
+      "reviewCount": 320,
+      "inStock": true,
+      "stockCount": 55,
+      "isAiRecommended": false,
+      "aiBadgeReason": null,
+      "tags": [
+        "accessories",
+        "hub",
+        "usb-c",
+        "adapter",
+        "macbook"
+      ],
+      "description": "Compact aluminum USB-C hub featuring 4K 60Hz HDMI, 100W PD charging, SD/TF card readers, and 3x USB 3.2 ports.",
+      "features": [
+        "4K@60Hz HDMI output",
+        "100W USB-C Power Delivery pass-through",
+        "Dual UHS-I SD & MicroSD card slots (104MB/s)",
+        "Aluminum enclosure for efficient heat dissipation"
+      ],
+      "specifications": {
+        "Ports": "HDMI, 100W PD, 2x USB-A 3.2, 1x USB-C Data, SD, TF",
+        "Video Output": "4K @ 60Hz",
+        "Body": "Anodized Aluminum"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {
+          "author": "Neil D.",
+          "rating": 5,
+          "comment": "Essential travel accessory for laptop owners."
+        }
+      ]
+    },
+    {
+      "id": "p23",
+      "name": "ProStream 2K HD Web Camera",
+      "brand": "ViewMaster",
+      "category": "Peripherals",
+      "price": 119,
+      "oldPrice": 139,
+      "discountPercent": 14,
+      "rating": 4.7,
+      "reviewCount": 204,
+      "inStock": true,
+      "stockCount": 27,
+      "isAiRecommended": false,
+      "aiBadgeReason": null,
+      "tags": [
+        "peripherals",
+        "webcam",
+        "camera",
+        "streaming",
+        "2k"
+      ],
+      "description": "2K QHD 60fps streaming webcam with auto-framing AI tracking, ring light, and noise-canceling dual microphones.",
+      "features": [
+        "2K QHD (2560 x 1440) 60fps glass lens",
+        "AI Auto-Framing keeps you centered on video calls",
+        "Built-in touch adjustable LED ring light",
+        "Physical privacy shutter slide"
+      ],
+      "specifications": {
+        "Resolution": "2K QHD @ 60fps",
+        "Field of View": "90 Degrees wide",
+        "Focus": "AI Auto Focus",
+        "Mount": "Universal Monitor Clip + 1/4\" Tripod Thread"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {
+          "author": "Karen W.",
+          "rating": 5,
+          "comment": "Video quality looks like a DSLR on Zoom meetings!"
+        }
+      ]
+    },
+    {
+      "id": "p24",
+      "name": "Phantom Wireless Pro Controller",
+      "brand": "Futura",
+      "category": "Gaming",
+      "price": 79,
+      "oldPrice": 89,
+      "discountPercent": 11,
+      "rating": 4.8,
+      "reviewCount": 240,
+      "inStock": true,
+      "stockCount": 38,
+      "isAiRecommended": false,
+      "aiBadgeReason": null,
+      "tags": [
+        "gaming",
+        "controller",
+        "gamepad",
+        "wireless",
+        "pc"
+      ],
+      "description": "Hall-effect anti-drift wireless game controller with remappable back paddles and mechanical microswitch face buttons.",
+      "features": [
+        "Hall Effect electromagnetic joysticks (Zero stick drift)",
+        "Mechanical microswitch face buttons for instantaneous actuation",
+        "4 Remappable back paddles for custom competitive profiles",
+        "Multi-platform compatibility (PC, Switch, iOS, Android)"
+      ],
+      "specifications": {
+        "Sticks": "Hall-Effect Magnetic Sensor",
+        "Battery": "1200mAh (Up to 25h)",
+        "Latency": "1ms Low Latency Wireless"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {
+          "author": "Brandon C.",
+          "rating": 5,
+          "comment": "No stick drift! Feels way better built than standard controllers."
+        }
+      ]
+    },
+    {
+      "id": "p25",
+      "name": "SoundPulse Waterproof Speaker",
+      "brand": "AcousticLab",
+      "category": "Audio",
+      "price": 119,
+      "oldPrice": 139,
+      "discountPercent": 14,
+      "rating": 4.7,
+      "reviewCount": 350,
+      "inStock": true,
+      "stockCount": 42,
+      "isAiRecommended": false,
+      "aiBadgeReason": null,
+      "tags": [
+        "audio",
+        "speaker",
+        "waterproof",
+        "portable",
+        "bluetooth"
+      ],
+      "description": "IP67 dust and waterproof outdoor speaker delivering 30W stereo audio with dual passive bass radiators.",
+      "features": [
+        "IP67 Dust & Waterproof (Floats on water)",
+        "30W Stereo output with dual bass radiators",
+        "20-Hour party battery life",
+        "PartySync link connects up to 100 speakers together"
+      ],
+      "specifications": {
+        "Power": "30W RMS",
+        "Battery": "20 Hours",
+        "Rating": "IP67 Waterproof & Dustproof",
+        "Bluetooth": "5.3"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {
+          "author": "Taylor S.",
+          "rating": 5,
+          "comment": "Took it to beach trips all summer. Indestructible!"
+        }
+      ]
+    },
+    {
+      "id": "p26",
+      "name": "Nexus Pad Pro 11\" Stylus Tablet",
+      "brand": "NEXUS",
+      "category": "Displays",
+      "price": 389,
+      "oldPrice": 449,
+      "discountPercent": 13,
+      "rating": 4.8,
+      "reviewCount": 175,
+      "inStock": true,
+      "stockCount": 19,
+      "isAiRecommended": true,
+      "aiBadgeReason": "Best Portable Drawing & Note-Taking Pad",
+      "tags": [
+        "displays",
+        "tablet",
+        "stylus",
+        "drawing",
+        "productivity"
+      ],
+      "description": "Paper-like 120Hz tablet display bundled with low-latency pressure stylus for digital artists and students.",
+      "features": [
+        "11-Inch matte anti-glare PaperText screen (120Hz)",
+        "Bundled 4096-pressure level active stylus with tilt support",
+        "8GB RAM & 256GB storage for seamless multi-tasking",
+        "Quad speakers tuned for media and calls"
+      ],
+      "specifications": {
+        "Screen": "11\" 2560 x 1600 PaperText 120Hz",
+        "Stylus": "4096 Levels, 0ms feel",
+        "RAM/Storage": "8GB / 256GB",
+        "Weight": "465g"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {
+          "author": "Maya N.",
+          "rating": 5,
+          "comment": "Feels like writing on actual paper. Battery easily lasts 2 full days."
+        }
+      ]
+    },
+    {
+      "id": "p26",
+      "name": "Lumen Smart Watch Pro",
+      "brand": "ChronoTech",
+      "category": "Wearables",
+      "price": 289,
+      "oldPrice": 329,
+      "discountPercent": 12,
+      "rating": 4.7,
+      "reviewCount": 188,
+      "inStock": true,
+      "stockCount": 24,
+      "isAiRecommended": true,
+      "aiBadgeReason": "Best for Fitness Tracking",
+      "tags": ["wearables", "smartwatch", "fitness", "health"],
+      "description": "Feature-rich smartwatch with AMOLED display, ECG monitoring, and multi-sport tracking for everyday performance.",
+      "features": ["AMOLED 1.8-inch display", "GPS + heart rate + sleep tracking", "7-day battery life", "Water resistant up to 50m"],
+      "specifications": {
+        "Display": "1.8-inch AMOLED",
+        "Battery": "7 Days",
+        "Water Resistance": "50m",
+        "Connectivity": "Bluetooth 5.3"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {"author": "Nina S.", "rating": 5, "comment": "Excellent tracking and battery life."}
+      ]
+    },
+    {
+      "id": "p27",
+      "name": "Flux Mini Projector",
+      "brand": "VisualOne",
+      "category": "Displays",
+      "price": 399,
+      "oldPrice": 499,
+      "discountPercent": 20,
+      "rating": 4.8,
+      "reviewCount": 154,
+      "inStock": true,
+      "stockCount": 16,
+      "isAiRecommended": true,
+      "aiBadgeReason": "Great for Home Cinema",
+      "tags": ["display", "projector", "home theater", "portable"],
+      "description": "Portable projector with vivid 1080p visuals, auto keystone correction, and built-in speakers for movie nights.",
+      "features": ["1080p resolution", "Auto keystone and focus", "Built-in 10W speakers", "Portable compact design"],
+      "specifications": {
+        "Resolution": "1920x1080",
+        "Brightness": "900 ANSI lumens",
+        "Battery": "2.5 hours",
+        "Connectivity": "HDMI, USB, Bluetooth"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1518444065439-e933c06ce9cd?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {"author": "Ravi P.", "rating": 5, "comment": "Fantastic picture quality for the price."}
+      ]
+    },
+    {
+      "id": "p28",
+      "name": "Crest Wireless Keyboard",
+      "brand": "KeyNova",
+      "category": "Peripherals",
+      "price": 89,
+      "oldPrice": 119,
+      "discountPercent": 25,
+      "rating": 4.6,
+      "reviewCount": 132,
+      "inStock": true,
+      "stockCount": 40,
+      "isAiRecommended": false,
+      "aiBadgeReason": null,
+      "tags": ["keyboard", "wireless", "peripherals", "office"],
+      "description": "Slim wireless keyboard with tactile switches, long battery life, and a compact footprint for desks and travel.",
+      "features": ["Low-profile keys", "Bluetooth + USB receiver", "Up to 12 months battery", "Compact layout"],
+      "specifications": {
+        "Connection": "Bluetooth / USB",
+        "Battery": "12 Months",
+        "Layout": "Compact 75%",
+        "Weight": "410g"
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80"
+      ],
+      "reviews": [
+        {"author": "Mina K.", "rating": 4, "comment": "Feels premium and works great for work."}
+      ]
+    }
+  ],
+  "orders": [
+    {
+      "id": "ord_1786166020635",
+      "name": "ddwd",
+      "email": "sy1908412@gmail.com",
+      "address": "jhanjhri gali jhumri teliya koderma jharkhand",
+      "items": {
+        "p25": 1
+      },
+      "total": 119,
+      "placedAt": "2026-08-08T05:13:40.635Z",
+      "status": "Confirmed"
+    }
+  ]
+}

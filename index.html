@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXUS — AI-Curated Tech Marketplace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#07060B;
+    --bg2:#0D0B16;
+    --surface:#141220;
+    --surface-2:#1C1930;
+    --line:#2B2745;
+    --text:#F1EFFB;
+    --muted:#9B95B8;
+    --violet:#B084FF;
+    --magenta:#FF5FA2;
+    --cyan:#4CF2D0;
+    --gold:#FFC85C;
+    --radius:16px;
+    --maxw:1240px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-0.02em;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  button{font-family:inherit;cursor:pointer;}
+  ::selection{background:var(--magenta);color:#07060B;}
+  :focus-visible{outline:2px solid var(--cyan);outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
+
+  .glow-text{
+    background:linear-gradient(90deg,var(--violet),var(--magenta) 50%,var(--cyan));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    background-size:200% auto;animation:shine 6s linear infinite;
+  }
+  @keyframes shine{to{background-position:200% center;}}
+
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--cyan);display:inline-flex;align-items:center;gap:8px;margin-bottom:16px;
+  }
+  .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);}
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:13px 26px;border-radius:999px;font-size:14.5px;font-weight:700;
+    border:1px solid transparent;transition:transform .15s, box-shadow .2s, border-color .2s;
+  }
+  .btn:active{transform:scale(0.96);}
+  .btn-primary{background:linear-gradient(90deg,var(--violet),var(--magenta));color:#0A0812;}
+  .btn-primary:hover{box-shadow:0 0 26px rgba(255,95,162,0.45);}
+  .btn-ghost{border-color:var(--line);color:var(--text);background:rgba(255,255,255,0.02);}
+  .btn-ghost:hover{border-color:var(--cyan);}
+  .btn-sm{padding:9px 16px;font-size:13px;}
+
+  /* NAV */
+  header{position:sticky;top:0;z-index:200;background:rgba(7,6,11,0.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+  nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 24px;max-width:var(--maxw);margin:0 auto;}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:21px;flex-shrink:0;}
+  .logo .dot{width:10px;height:10px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan);animation:pulse 2s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+  .search-bar{flex:1;max-width:440px;position:relative;display:none;}
+  .search-bar input{
+    width:100%;background:var(--surface);border:1px solid var(--line);border-radius:999px;
+    padding:11px 44px 11px 18px;color:var(--text);font-size:14px;
+  }
+  .search-bar input:focus{outline:none;border-color:var(--cyan);}
+  .search-bar .ai-badge{position:absolute;right:6px;top:50%;transform:translateY(-50%);font-family:'JetBrains Mono',monospace;font-size:10px;background:var(--surface-2);color:var(--cyan);padding:5px 8px;border-radius:999px;border:1px solid var(--line);}
+  .nav-actions{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+  .icon-btn{position:relative;width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:var(--surface);display:flex;align-items:center;justify-content:center;color:var(--text);transition:border-color .2s;}
+  .icon-btn:hover{border-color:var(--violet);}
+  .badge{position:absolute;top:-6px;right:-6px;background:var(--magenta);color:#0A0812;font-size:10.5px;font-weight:800;width:19px;height:19px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+
+  /* HERO */
+  .hero{position:relative;padding:90px 24px 70px;overflow:hidden;}
+  .hero::before{
+    content:"";position:absolute;inset:-20% -10%;
+    background:radial-gradient(circle at 25% 20%, rgba(176,132,255,0.22), transparent 45%),
+               radial-gradient(circle at 80% 60%, rgba(255,95,162,0.16), transparent 40%),
+               radial-gradient(circle at 50% 90%, rgba(76,242,208,0.14), transparent 40%);
+    pointer-events:none;
+  }
+  .hero-inner{max-width:var(--maxw);margin:0 auto;position:relative;text-align:center;}
+  .hero h1{font-size:clamp(36px,6vw,68px);line-height:1.03;margin-bottom:20px;}
+  .hero p{color:var(--muted);font-size:17.5px;max-width:560px;margin:0 auto 34px;}
+  .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:44px;}
+  #heroCanvas{width:100%;height:220px;border-radius:var(--radius);}
+  .trust-row{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;color:var(--muted);font-size:13px;font-family:'JetBrains Mono',monospace;}
+  .trust-row strong{color:var(--text);}
+
+  /* CATEGORY CHIPS */
+  .chips{display:flex;gap:10px;overflow-x:auto;padding:0 24px 30px;max-width:var(--maxw);margin:0 auto;}
+  .chip{flex:0 0 auto;padding:9px 18px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-size:13.5px;color:var(--muted);white-space:nowrap;transition:all .2s;}
+  .chip.active,.chip:hover{border-color:var(--violet);color:var(--text);background:var(--surface-2);}
+
+  section{padding:70px 0;}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:32px;gap:20px;flex-wrap:wrap;}
+  .section-head h2{font-size:clamp(24px,3vw,32px);}
+  .section-head p{color:var(--muted);font-size:14.5px;margin-top:6px;}
+
+  /* AI PICKS */
+  .ai-picks-section{background:linear-gradient(180deg, rgba(176,132,255,0.06), transparent);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  #aiPicksTrack{display:flex;gap:20px;overflow-x:auto;padding-bottom:8px;}
+  .ai-pick-card{flex:0 0 260px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;position:relative;}
+  .ai-pick-card .match{position:absolute;top:14px;right:14px;background:rgba(76,242,208,0.14);color:var(--cyan);font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:4px 9px;border-radius:999px;border:1px solid rgba(76,242,208,0.3);}
+  .ai-pick-card img{width:100%;height:140px;object-fit:cover;border-radius:10px;margin-bottom:12px;}
+  .ai-pick-card h4{font-size:14.5px;margin-bottom:6px;}
+  .ai-pick-card .reason{font-size:12.5px;color:var(--muted);font-style:italic;min-height:32px;}
+  .ai-pick-card .price{margin-top:10px;font-family:'JetBrains Mono',monospace;color:var(--gold);}
+  .ai-loading{color:var(--muted);font-size:13.5px;font-family:'JetBrains Mono',monospace;display:flex;align-items:center;gap:10px;}
+  .spinner{width:14px;height:14px;border-radius:50%;border:2px solid var(--line);border-top-color:var(--cyan);animation:spin 0.8s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  /* PRODUCT GRID */
+  .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .product-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:border-color .2s, transform .2s;display:flex;flex-direction:column;}
+  .product-card:hover{border-color:var(--violet);transform:translateY(-4px);}
+  .product-media{position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--surface-2);}
+  .product-media img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+  .product-card:hover .product-media img{transform:scale(1.06);}
+  .product-tag{position:absolute;top:12px;left:12px;background:rgba(7,6,11,0.7);backdrop-filter:blur(6px);color:var(--cyan);font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:5px 10px;border-radius:999px;border:1px solid var(--line);}
+  .product-body{padding:18px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .product-body h3{font-size:15.5px;}
+  .product-body .cat{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;font-family:'JetBrains Mono',monospace;}
+  .product-body .desc{font-size:13px;color:var(--muted);flex:1;}
+  .product-foot{display:flex;align-items:center;justify-content:space-between;margin-top:8px;gap:10px;}
+  .price{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;color:var(--gold);}
+  .price small{color:var(--muted);font-family:'Inter',sans-serif;font-weight:400;font-size:12px;text-decoration:line-through;margin-left:6px;}
+  .add-btn{background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:9px 14px;font-size:13px;font-weight:600;color:var(--text);transition:all .2s;}
+  .add-btn:hover{background:var(--violet);border-color:var(--violet);color:#0A0812;}
+
+  /* MODAL / OVERLAY shared */
+  .overlay{position:fixed;inset:0;background:rgba(4,3,8,0.72);backdrop-filter:blur(4px);z-index:500;display:none;align-items:center;justify-content:center;padding:20px;}
+  .overlay.show{display:flex;}
+  .modal{background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);max-width:640px;width:100%;max-height:88vh;overflow-y:auto;padding:30px;position:relative;}
+  .modal-close{position:absolute;top:18px;right:18px;width:34px;height:34px;border-radius:10px;background:var(--surface);border:1px solid var(--line);color:var(--text);font-size:16px;}
+
+  /* PRODUCT QUICK VIEW */
+  .qv-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;}
+  .qv-grid img{width:100%;border-radius:12px;aspect-ratio:1/1;object-fit:cover;}
+  .qv-info h3{font-size:22px;margin-bottom:8px;}
+  .qv-info .price{font-size:24px;margin:14px 0;}
+  .qv-info p{color:var(--muted);font-size:14px;margin-bottom:18px;}
+  .review-box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;margin-top:16px;}
+  .review-box h5{font-size:13px;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted);margin-bottom:10px;font-family:'JetBrains Mono',monospace;}
+  #reviewSummaryText{font-size:13.5px;color:var(--text);}
+  @media (max-width:600px){.qv-grid{grid-template-columns:1fr;}}
+
+  /* CART DRAWER */
+  .cart-drawer{position:fixed;top:0;right:0;height:100vh;width:420px;max-width:92vw;background:var(--bg2);border-left:1px solid var(--line);z-index:600;transform:translateX(100%);transition:transform .3s ease;display:flex;flex-direction:column;}
+  .cart-drawer.open{transform:translateX(0);}
+  .cart-head{display:flex;justify-content:space-between;align-items:center;padding:22px;border-bottom:1px solid var(--line);}
+  .cart-items{flex:1;overflow-y:auto;padding:16px 22px;}
+  .cart-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);}
+  .cart-item img{width:64px;height:64px;border-radius:9px;object-fit:cover;}
+  .cart-item .ci-info{flex:1;}
+  .cart-item h5{font-size:13.5px;margin-bottom:4px;}
+  .qty-row{display:flex;align-items:center;gap:10px;margin-top:6px;}
+  .qty-row button{width:24px;height:24px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--text);font-size:13px;}
+  .cart-foot{padding:22px;border-top:1px solid var(--line);}
+  .cart-total-row{display:flex;justify-content:space-between;margin-bottom:14px;font-size:15px;}
+  .empty-state{text-align:center;color:var(--muted);padding:60px 20px;font-size:14px;}
+
+  /* AI CHAT WIDGET */
+  .chat-fab{position:fixed;bottom:26px;right:26px;z-index:400;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--violet),var(--magenta));border:none;box-shadow:0 6px 24px rgba(176,132,255,0.4);display:flex;align-items:center;justify-content:center;font-size:24px;}
+  .chat-panel{position:fixed;bottom:100px;right:26px;width:380px;max-width:90vw;height:520px;max-height:70vh;background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);z-index:401;display:none;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.5);}
+  .chat-panel.open{display:flex;}
+  .chat-head{padding:16px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;background:var(--surface);}
+  .chat-head strong{font-size:14.5px;}
+  .chat-head span{font-size:11.5px;color:var(--cyan);font-family:'JetBrains Mono',monospace;}
+  .chat-msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;}
+  .msg{max-width:85%;padding:10px 13px;border-radius:12px;font-size:13.5px;line-height:1.5;}
+  .msg.user{align-self:flex-end;background:var(--violet);color:#0A0812;border-bottom-right-radius:3px;}
+  .msg.ai{align-self:flex-start;background:var(--surface);border:1px solid var(--line);border-bottom-left-radius:3px;}
+  .chat-input-row{display:flex;gap:8px;padding:14px;border-top:1px solid var(--line);}
+  .chat-input-row input{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:10px 16px;color:var(--text);font-size:13.5px;}
+  .chat-input-row input:focus{outline:none;border-color:var(--cyan);}
+  .chat-input-row button{width:38px;height:38px;border-radius:50%;background:var(--cyan);border:none;color:#07060B;font-weight:700;flex-shrink:0;}
+
+  /* CHECKOUT */
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-size:12.5px;color:var(--muted);margin-bottom:6px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  input,select{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:11px 13px;color:var(--text);font-size:14px;}
+  input:focus,select:focus{outline:none;border-color:var(--violet);}
+  .order-conf{text-align:center;padding:20px 0;}
+  .order-conf .check{width:60px;height:60px;border-radius:50%;background:rgba(76,242,208,0.14);border:1px solid var(--cyan);display:flex;align-items:center;justify-content:center;font-size:26px;color:var(--cyan);margin:0 auto 18px;}
+
+  /* ADMIN */
+  .admin-fab{position:fixed;bottom:26px;left:26px;z-index:300;padding:10px 16px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--muted);font-size:12px;font-family:'JetBrains Mono',monospace;}
+  .admin-fab:hover{border-color:var(--gold);color:var(--gold);}
+  .admin-list{margin-top:20px;display:flex;flex-direction:column;gap:10px;max-height:260px;overflow-y:auto;}
+  .admin-row{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;}
+  .admin-row img{width:38px;height:38px;border-radius:7px;object-fit:cover;}
+  .admin-row span{flex:1;font-size:13px;}
+  .admin-row button{background:rgba(255,95,162,0.14);color:var(--magenta);border:1px solid rgba(255,95,162,0.3);border-radius:7px;padding:6px 10px;font-size:12px;}
+
+  footer{border-top:1px solid var(--line);padding:44px 0 26px;text-align:center;}
+  footer p{color:var(--muted);font-size:13px;}
+  footer .mono-note{margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#5B5578;}
+
+  @media (max-width:960px){
+    .product-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:680px){
+    .search-bar{display:none !important;}
+    .product-grid{grid-template-columns:1fr;}
+    .form-row{grid-template-columns:1fr;}
+    .cart-drawer{width:100vw;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo"><div class="dot"></div>NEXUS<span class="mono" style="font-size:11px;color:var(--muted);font-weight:400;margin-left:2px;">.ai</span></div>
+    <div class="search-bar">
+      <input id="aiSearchInput" type="text" placeholder="Ask AI to find something... 'quiet earbuds under $200'">
+      <span class="ai-badge">AI SEARCH</span>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-btn" id="cartBtn" aria-label="Open cart">🛒<span class="badge" id="cartBadge" style="display:none;">0</span></button>
+      <button class="btn btn-primary btn-sm" id="chatOpenBtn">✦ AI Assistant</button>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow" style="justify-content:center">Live AI Marketplace</div>
+    <h1>Shop the future with an <span class="glow-text">AI that actually knows the store.</span></h1>
+    <p>Every product on NEXUS is matched, explained, and recommended by a live AI shopping copilot — not a static filter. Ask it anything.</p>
+    <div class="hero-actions">
+      <a href="#shop" class="btn btn-primary">Browse the drop ↓</a>
+      <button class="btn btn-ghost" id="heroChatBtn">✦ Ask AI what to buy</button>
+    </div>
+    <canvas id="heroCanvas"></canvas>
+    <div class="trust-row">
+      <span><strong>18,300+</strong> AI-matched orders</span>
+      <span><strong>4.92★</strong> avg AI-recommendation rating</span>
+      <span><strong>60 sec</strong> avg AI response time</span>
+    </div>
+  </div>
+</section>
+
+<div class="chips" id="categoryChips"></div>
+
+<section class="ai-picks-section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Curated live</div>
+        <h2>AI picks, generated right now</h2>
+        <p>Based on what's in your cart. Regenerate any time.</p>
+      </div>
+      <button class="btn btn-ghost btn-sm" id="refreshPicksBtn">↻ Regenerate</button>
+    </div>
+    <div id="aiPicksTrack"><div class="ai-loading"><div class="spinner"></div> Asking the AI to curate picks for you...</div></div>
+  </div>
+</section>
+
+<section id="shop">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Full catalog</div>
+        <h2 id="gridTitle">All products</h2>
+        <p id="gridSubtitle">A working store — data persists for every visitor.</p>
+      </div>
+    </div>
+    <div class="product-grid" id="productGrid"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 NEXUS.ai — an AI-curated marketplace template</p>
+    <p class="mono-note">Frontend: HTML / CSS / vanilla JS. Backend: Node/Express, with a JSON-file store shared across visitors. AI: live calls to Google Gemini via the server, no mock data. Checkout is simulated — plug in a real payment gateway (Stripe/Razorpay) for production.</p>
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-head">
+    <h3>Your cart</h3>
+    <button class="modal-close" id="closeCartBtn" style="position:static;">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot">
+    <div class="cart-total-row"><span>Subtotal</span><strong id="cartSubtotal">$0.00</strong></div>
+    <button class="btn btn-primary" id="checkoutBtn" style="width:100%;">Checkout</button>
+  </div>
+</div>
+
+<!-- PRODUCT QUICK VIEW MODAL -->
+<div class="overlay" id="qvOverlay">
+  <div class="modal" id="qvModal">
+    <button class="modal-close" data-close="qvOverlay">✕</button>
+    <div class="qv-grid" id="qvContent"></div>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="overlay" id="checkoutOverlay">
+  <div class="modal">
+    <button class="modal-close" data-close="checkoutOverlay">✕</button>
+    <div id="checkoutContent"></div>
+  </div>
+</div>
+
+<!-- ADMIN MODAL -->
+<div class="overlay" id="adminOverlay">
+  <div class="modal">
+    <button class="modal-close" data-close="adminOverlay">✕</button>
+    <h3>Store admin — manage catalog</h3>
+    <p style="color:var(--muted);font-size:13px;margin-top:6px;">Real CRUD against shared storage. Changes are visible to every visitor.</p>
+    <div class="field" style="margin-top:20px;"><label>Name</label><input id="admName"></div>
+    <div class="form-row">
+      <div class="field"><label>Price (USD)</label><input id="admPrice" type="number" step="0.01"></div>
+      <div class="field"><label>Category</label><input id="admCategory" placeholder="Audio / Wearables / ..."></div>
+    </div>
+    <div class="field"><label>Image URL (optional)</label><input id="admImage" placeholder="https://... — leave blank for an auto photo"></div>
+    <p style="color:var(--muted);font-size:12px;margin-top:4px;">If left blank, a real stock photo is used automatically — no image upload needed.</p>
+    <div class="field"><label>Description</label><input id="admDesc"></div>
+    <button class="btn btn-primary btn-sm" id="admAddBtn">+ Add product</button>
+    <div class="admin-list" id="adminList"></div>
+  </div>
+</div>
+
+<!-- AI CHAT WIDGET -->
+<button class="chat-fab" id="chatFab" aria-label="Open AI shopping assistant">✦</button>
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-head">
+    <div><strong>NEXUS AI Assistant</strong><br><span>● live — knows the current catalog</span></div>
+    <button class="modal-close" id="closeChatBtn" style="position:static;">✕</button>
+  </div>
+  <div class="chat-msgs" id="chatMsgs">
+    <div class="msg ai">Hey! I'm the NEXUS assistant. Ask me about products in the store, or honestly anything else — I'm a full assistant, not just a product bot.</div>
+  </div>
+  <div class="chat-input-row">
+    <input id="chatInput" type="text" placeholder="e.g. something for focus at work">
+    <button id="chatSendBtn">↑</button>
+  </div>
+</div>
+
+<button class="admin-fab" id="adminBtn">⚙ admin</button>
+
+<script>
+/* ============================================================
+   NEXUS.ai — Express-backed store + live Gemini AI calls
+   /api/store/:key is the real backend (persistent, shared
+   across visitors for products & orders). The cart is personal
+   and lives in this browser's localStorage. /api/chat and
+   /api/ai proxy every AI feature through the server, which
+   holds the Gemini API key.
+   ============================================================ */
+
+const SEED_PRODUCTS = [
+  {id:'p1', name:'Aria Neural Earbuds', category:'Audio', price:179, oldPrice:219, seed:'nexus-earbuds-1', desc:'Adaptive noise cancellation that learns your environment over time.'},
+  {id:'p2', name:'Nova Smart Speaker', category:'Audio', price:129, oldPrice:null, seed:'nexus-speaker-2', desc:'Room-aware sound tuning powered by an on-device acoustic model.'},
+  {id:'p3', name:'Orbit AI Desk Companion', category:'Robotics', price:349, oldPrice:399, seed:'nexus-robot-3', desc:'A small desk robot that tracks tasks, reminders, and posture breaks.'},
+  {id:'p4', name:'Pulse Health Ring', category:'Wearables', price:249, oldPrice:null, seed:'nexus-ring-4', desc:'Continuous recovery scoring with a 6-day battery.'},
+  {id:'p5', name:'Halo Vision Camera', category:'Smart Home', price:159, oldPrice:189, seed:'nexus-camera-5', desc:'On-device object recognition — no footage leaves your home.'},
+  {id:'p6', name:'Vertex Holographic Pad', category:'Displays', price:299, oldPrice:null, seed:'nexus-pad-6', desc:'A lightweight 3D display for prototyping and presentations.'},
+  {id:'p7', name:'Flux Quantum Charge Mat', category:'Accessories', price:79, oldPrice:99, seed:'nexus-charge-7', desc:'Charges three devices at once, prioritised by an on-mat model.'},
+  {id:'p8', name:'Cipher AI Keyboard', category:'Peripherals', price:189, oldPrice:null, seed:'nexus-keyboard-8', desc:'Predicts your next command and surfaces shortcuts as you type.'},
+  {id:'p9', name:'Drift Mini Drone', category:'Robotics', price:229, oldPrice:259, seed:'nexus-drone-9', desc:'Autonomous subject tracking with obstacle-aware flight paths.'},
+];
+
+const state = { products: [], cart: {}, viewProduct: null };
+
+const CATEGORY_ART = {
+  'Audio':        { g1:'#B084FF', g2:'#241C3D', icon:'🎧' },
+  'Robotics':     { g1:'#FF5FA2', g2:'#2A1230', icon:'🤖' },
+  'Wearables':    { g1:'#4CF2D0', g2:'#0F2A26', icon:'💍' },
+  'Smart Home':   { g1:'#FFC85C', g2:'#2E2312', icon:'📷' },
+  'Displays':     { g1:'#B084FF', g2:'#221C3B', icon:'🖥️' },
+  'Accessories':  { g1:'#4CF2D0', g2:'#12242A', icon:'🔌' },
+  'Peripherals':  { g1:'#FF5FA2', g2:'#2C1522', icon:'⌨️' },
+  'General':      { g1:'#B084FF', g2:'#201A38', icon:'✦' }
+};
+function imgFor(p){
+  // p can be a product object (preferred) or a legacy seed string
+  const product = typeof p === 'string' ? { name:p, category:'General' } : p;
+  // 1) explicit real photo URL set on the product (via admin panel) wins
+  if(product.image) return product.image;
+  // 2) real stock photo, deterministic per product via its seed — no API key needed
+  if(product.seed) return `https://picsum.photos/seed/${encodeURIComponent(product.seed)}/600/600`;
+  // 3) fallback: generated category art (used only if a product has neither)
+  const art = CATEGORY_ART[product.category] || CATEGORY_ART['General'];
+  const initials = (product.name || '?').split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+    <defs>
+      <radialGradient id="g" cx="30%" cy="25%" r="85%">
+        <stop offset="0%" stop-color="${art.g1}" stop-opacity="0.55"/>
+        <stop offset="100%" stop-color="${art.g2}"/>
+      </radialGradient>
+    </defs>
+    <rect width="600" height="600" fill="#0D0B16"/>
+    <rect width="600" height="600" fill="url(#g)"/>
+    <g stroke="${art.g1}" stroke-opacity="0.25" stroke-width="1.5" fill="none">
+      <circle cx="300" cy="300" r="190"/>
+      <circle cx="300" cy="300" r="240"/>
+      <path d="M60 300 H180 M420 300 H540 M300 60 V180 M300 420 V540"/>
+    </g>
+    <circle cx="300" cy="300" r="120" fill="#0D0B16" fill-opacity="0.35"/>
+    <text x="300" y="322" font-family="Arial, sans-serif" font-size="120" text-anchor="middle">${art.icon}</text>
+    <text x="300" y="560" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="${art.g1}" text-anchor="middle" opacity="0.85">${initials}</text>
+  </svg>`;
+  return `data:image/svg+xml,${encodeURIComponent(svg)}`;
+}
+function money(n){ return '$' + Number(n).toFixed(2); }
+
+/* ---------- storage helpers (the "backend") ---------- */
+async function dbGet(key, shared){
+  try{
+    if(shared){
+      // shared data (products, orders) lives on the server, visible to every visitor
+      const r = await fetch('/api/store/' + encodeURIComponent(key));
+      if(!r.ok) return null;
+      const data = await r.json();
+      return data.value ?? null;
+    } else {
+      // personal data (this visitor's cart) lives in their own browser
+      const raw = localStorage.getItem('nexus:' + key);
+      return raw ? JSON.parse(raw) : null;
+    }
+  } catch(e){ return null; }
+}
+async function dbSet(key, value, shared){
+  try{
+    if(shared){
+      await fetch('/api/store/' + encodeURIComponent(key), {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ value })
+      });
+    } else {
+      localStorage.setItem('nexus:' + key, JSON.stringify(value));
+    }
+    return true;
+  } catch(e){ console.error('storage set failed', e); return false; }
+}
+
+/* ---------- seed + load catalog ---------- */
+async function loadProducts(){
+  let products = await dbGet('products', true);
+  if(!products || !Array.isArray(products) || products.length === 0){
+    products = SEED_PRODUCTS;
+    await dbSet('products', products, true);
+  }
+  state.products = products;
+  renderCategoryChips();
+  renderProductGrid();
+}
+
+async function loadCart(){
+  const cart = await dbGet('cart', false);
+  state.cart = cart || {};
+  renderCartDrawer();
+}
+
+/* ---------- category chips ---------- */
+function renderCategoryChips(){
+  const cats = ['All', ...new Set(state.products.map(p => p.category))];
+  const el = document.getElementById('categoryChips');
+  el.innerHTML = cats.map((c,i) => `<button class="chip ${i===0?'active':''}" data-cat="${c}">${c}</button>`).join('');
+  el.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      el.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      renderProductGrid(chip.dataset.cat);
+    });
+  });
+}
+
+/* ---------- product grid ---------- */
+function renderProductGrid(filterCat, list){
+  const grid = document.getElementById('productGrid');
+  let items = list || state.products;
+  if(filterCat && filterCat !== 'All') items = items.filter(p => p.category === filterCat);
+  document.getElementById('gridSubtitle').textContent = `${items.length} product${items.length!==1?'s':''} — data persists for every visitor.`;
+  if(items.length === 0){
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">No products match. Try the AI search or a different category.</div>`;
+    return;
+  }
+  grid.innerHTML = items.map(p => `
+    <div class="product-card" data-id="${p.id}">
+      <div class="product-media">
+        <span class="product-tag">AI-matched</span>
+        <img src="${imgFor(p)}" alt="${p.name}" loading="lazy">
+      </div>
+      <div class="product-body">
+        <span class="cat">${p.category}</span>
+        <h3>${p.name}</h3>
+        <p class="desc">${p.desc}</p>
+        <div class="product-foot">
+          <div class="price">${money(p.price)}${p.oldPrice ? `<small>${money(p.oldPrice)}</small>` : ''}</div>
+          <button class="add-btn" data-add="${p.id}">Add to cart</button>
+        </div>
+      </div>
+    </div>`).join('');
+
+  grid.querySelectorAll('.product-media, h3').forEach(el => {
+    el.addEventListener('click', () => {
+      const id = el.closest('.product-card').dataset.id;
+      openQuickView(id);
+    });
+  });
+  grid.querySelectorAll('[data-add]').forEach(btn => {
+    btn.addEventListener('click', (e) => { e.stopPropagation(); addToCart(btn.dataset.add); });
+  });
+}
+
+/* ---------- cart ---------- */
+async function addToCart(id, qty=1){
+  state.cart[id] = (state.cart[id] || 0) + qty;
+  await dbSet('cart', state.cart, false);
+  renderCartDrawer();
+  flashCart();
+}
+async function setQty(id, qty){
+  if(qty <= 0){ delete state.cart[id]; } else { state.cart[id] = qty; }
+  await dbSet('cart', state.cart, false);
+  renderCartDrawer();
+}
+function flashCart(){
+  const btn = document.getElementById('cartBtn');
+  btn.style.transform = 'scale(1.15)';
+  setTimeout(()=> btn.style.transform = 'scale(1)', 180);
+}
+function renderCartDrawer(){
+  const ids = Object.keys(state.cart);
+  const badge = document.getElementById('cartBadge');
+  const count = ids.reduce((s,id)=> s + state.cart[id], 0);
+  badge.style.display = count > 0 ? 'flex' : 'none';
+  badge.textContent = count;
+
+  const container = document.getElementById('cartItems');
+  if(ids.length === 0){
+    container.innerHTML = `<div class="empty-state">Your cart is empty.<br>Ask the AI assistant for suggestions →</div>`;
+    document.getElementById('cartSubtotal').textContent = money(0);
+    return;
+  }
+  let subtotal = 0;
+  container.innerHTML = ids.map(id => {
+    const p = state.products.find(x => x.id === id);
+    if(!p) return '';
+    const qty = state.cart[id];
+    subtotal += p.price * qty;
+    return `<div class="cart-item">
+      <img src="${imgFor(p)}" alt="${p.name}">
+      <div class="ci-info">
+        <h5>${p.name}</h5>
+        <span style="color:var(--muted);font-size:12.5px;">${money(p.price)}</span>
+        <div class="qty-row">
+          <button data-dec="${id}">–</button>
+          <span class="mono">${qty}</span>
+          <button data-inc="${id}">+</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('cartSubtotal').textContent = money(subtotal);
+
+  container.querySelectorAll('[data-inc]').forEach(b => b.addEventListener('click', () => setQty(b.dataset.inc, state.cart[b.dataset.inc]+1)));
+  container.querySelectorAll('[data-dec]').forEach(b => b.addEventListener('click', () => setQty(b.dataset.dec, state.cart[b.dataset.dec]-1)));
+}
+
+document.getElementById('cartBtn').addEventListener('click', () => document.getElementById('cartDrawer').classList.add('open'));
+document.getElementById('closeCartBtn').addEventListener('click', () => document.getElementById('cartDrawer').classList.remove('open'));
+
+/* ---------- quick view + AI review summary ---------- */
+function openQuickView(id){
+  const p = state.products.find(x => x.id === id);
+  if(!p) return;
+  state.viewProduct = p;
+  document.getElementById('qvContent').innerHTML = `
+    <img src="${imgFor(p)}" alt="${p.name}">
+    <div class="qv-info">
+      <span class="cat">${p.category}</span>
+      <h3>${p.name}</h3>
+      <p>${p.desc}</p>
+      <div class="price">${money(p.price)}${p.oldPrice ? `<small>${money(p.oldPrice)}</small>` : ''}</div>
+      <button class="btn btn-primary" data-add="${p.id}">Add to cart</button>
+      <div class="review-box">
+        <h5>AI review summary</h5>
+        <div id="reviewSummaryText">
+          <button class="btn btn-ghost btn-sm" id="summarizeBtn">✦ Summarize reviews with AI</button>
+        </div>
+      </div>
+    </div>`;
+  document.getElementById('qvOverlay').classList.add('show');
+  document.querySelector('[data-add="'+p.id+'"]').addEventListener('click', () => addToCart(p.id));
+  document.getElementById('summarizeBtn').addEventListener('click', () => summarizeReviews(p));
+}
+
+const MOCK_REVIEWS = {
+  default: [
+    "Great build quality but the app took a bit to set up.",
+    "Battery life is better than advertised, very happy with it.",
+    "Works exactly as described, would recommend for the price.",
+    "Shipping was fast, packaging felt premium.",
+    "A bit pricey but the AI features genuinely save me time."
+  ]
+};
+
+async function summarizeReviews(product){
+  const box = document.getElementById('reviewSummaryText');
+  box.innerHTML = `<div class="ai-loading"><div class="spinner"></div> Reading reviews...</div>`;
+  const reviews = MOCK_REVIEWS.default;
+  try{
+    const res = await fetch("/api/ai", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        maxTokens: 200,
+        prompt: `You are summarizing customer reviews for a product called "${product.name}" (${product.desc}). Reviews:\n${reviews.map((r,i)=>`${i+1}. ${r}`).join('\n')}\n\nWrite a 2-3 sentence honest summary covering the overall sentiment and any recurring pros/cons. Plain text only, no markdown.`
+      })
+    });
+    const data = await res.json();
+    const text = (data.content || []).map(c => c.text || '').join(' ').trim();
+    box.textContent = text || "Couldn't generate a summary right now — please try again.";
+  }catch(e){
+    box.textContent = "AI summary unavailable right now. Please try again in a moment.";
+  }
+}
+
+/* ---------- checkout ---------- */
+document.getElementById('checkoutBtn').addEventListener('click', openCheckout);
+function openCheckout(){
+  const ids = Object.keys(state.cart);
+  if(ids.length === 0) return;
+  let subtotal = 0;
+  ids.forEach(id => { const p = state.products.find(x=>x.id===id); if(p) subtotal += p.price * state.cart[id]; });
+  document.getElementById('checkoutContent').innerHTML = `
+    <h3>Checkout</h3>
+    <p style="color:var(--muted);font-size:13px;margin:6px 0 20px;">Simulated payment — order is saved to real persistent storage. Swap in Stripe/Razorpay keys for production.</p>
+    <div class="form-row">
+      <div class="field"><label>Full name</label><input id="coName" required></div>
+      <div class="field"><label>Email</label><input id="coEmail" type="email" required></div>
+    </div>
+    <div class="field"><label>Shipping address</label><input id="coAddress" required></div>
+    <div class="form-row">
+      <div class="field"><label>Card number</label><input id="coCard" placeholder="4242 4242 4242 4242" required></div>
+      <div class="field"><label>Expiry / CVC</label><input id="coExpiry" placeholder="12/28  ·  123" required></div>
+    </div>
+    <div class="cart-total-row" style="margin:18px 0;"><span>Total</span><strong>${money(subtotal)}</strong></div>
+    <button class="btn btn-primary" id="placeOrderBtn" style="width:100%;">Place order — ${money(subtotal)}</button>
+  `;
+  document.getElementById('checkoutOverlay').classList.add('show');
+  document.getElementById('placeOrderBtn').addEventListener('click', () => placeOrder(subtotal));
+}
+
+async function placeOrder(subtotal){
+  const btn = document.getElementById('placeOrderBtn');
+  btn.textContent = 'Processing payment...';
+  btn.disabled = true;
+  const name = document.getElementById('coName').value || 'Guest';
+  await new Promise(r => setTimeout(r, 1100)); // simulate gateway round-trip
+
+  const order = {
+    id: 'ord_' + Date.now(),
+    name,
+    items: {...state.cart},
+    total: subtotal,
+    placedAt: new Date().toISOString()
+  };
+  const orders = (await dbGet('orders', true)) || [];
+  orders.push(order);
+  await dbSet('orders', orders, true);
+
+  state.cart = {};
+  await dbSet('cart', state.cart, false);
+  renderCartDrawer();
+
+  let thankYou = `Thanks, ${name.split(' ')[0]}! Your order is confirmed and on its way.`;
+  try{
+    const res = await fetch("/api/ai", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        maxTokens: 80,
+        prompt: `Write one warm, brief (max 2 sentences) order-confirmation message for a customer named ${name.split(' ')[0]} who just bought from an AI gadget store called NEXUS. Plain text, no markdown, no emoji spam (max 1 emoji).`
+      })
+    });
+    const data = await res.json();
+    const text = (data.content||[]).map(c=>c.text||'').join(' ').trim();
+    if(text) thankYou = text;
+  }catch(e){ /* fall back to default message above */ }
+
+  document.getElementById('checkoutContent').innerHTML = `
+    <div class="order-conf">
+      <div class="check">✓</div>
+      <h3>Order placed</h3>
+      <p style="color:var(--muted);margin-top:10px;">${thankYou}</p>
+      <p class="mono" style="color:var(--muted);font-size:12px;margin-top:14px;">Order ID: ${order.id}</p>
+      <button class="btn btn-ghost btn-sm" style="margin-top:20px;" data-close="checkoutOverlay">Continue shopping</button>
+    </div>`;
+  document.querySelectorAll('[data-close]').forEach(bindCloseHandler);
+  document.getElementById('cartDrawer').classList.remove('open');
+}
+
+/* ---------- overlay close handling ---------- */
+function bindCloseHandler(el){
+  el.addEventListener('click', () => document.getElementById(el.dataset.close).classList.remove('show'));
+}
+document.querySelectorAll('[data-close]').forEach(bindCloseHandler);
+document.querySelectorAll('.overlay').forEach(ov => {
+  ov.addEventListener('click', (e) => { if(e.target === ov) ov.classList.remove('show'); });
+});
+
+/* ---------- AI picks (personalized) ---------- */
+async function generateAIPicks(){
+  const track = document.getElementById('aiPicksTrack');
+  track.innerHTML = `<div class="ai-loading"><div class="spinner"></div> Asking the AI to curate picks for you...</div>`;
+  const cartNames = Object.keys(state.cart).map(id => state.products.find(p=>p.id===id)?.name).filter(Boolean);
+  const catalogCompact = state.products.map(p => ({id:p.id, name:p.name, category:p.category, price:p.price, desc:p.desc}));
+  try{
+    const res = await fetch("/api/ai", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        maxTokens: 500,
+        prompt: `You are a product recommendation engine for an AI gadget store. Catalog (JSON): ${JSON.stringify(catalogCompact)}\nCustomer's current cart: ${cartNames.length ? cartNames.join(', ') : 'empty, first-time visitor'}.\nPick 3 products from the catalog that would suit this customer (if the cart is empty, pick 3 broadly appealing bestsellers). Respond ONLY with a raw JSON array, no markdown fences, no preamble, in this exact shape: [{"id":"p1","reason":"short reason under 12 words"}, ...]`
+      })
+    });
+    const data = await res.json();
+    const text = (data.content||[]).map(c=>c.text||'').join('').trim().replace(/^```json|```$/g,'').trim();
+    const picks = JSON.parse(text);
+    renderAIPicks(picks);
+  }catch(e){
+    // graceful fallback: show 3 random products without fabricated AI reasoning
+    const fallback = state.products.slice(0,3).map(p => ({id:p.id, reason:'Popular pick right now'}));
+    renderAIPicks(fallback);
+  }
+}
+function renderAIPicks(picks){
+  const track = document.getElementById('aiPicksTrack');
+  const cards = picks.map(pick => {
+    const p = state.products.find(x => x.id === pick.id);
+    if(!p) return '';
+    return `<div class="ai-pick-card">
+      <span class="match">AI PICK</span>
+      <img src="${imgFor(p)}" alt="${p.name}">
+      <h4>${p.name}</h4>
+      <div class="reason">"${pick.reason}"</div>
+      <div class="price">${money(p.price)}</div>
+      <button class="add-btn" style="width:100%;margin-top:10px;" data-add="${p.id}">Add to cart</button>
+    </div>`;
+  }).join('');
+  track.innerHTML = cards || `<div class="empty-state">No picks available.</div>`;
+  track.querySelectorAll('[data-add]').forEach(btn => btn.addEventListener('click', () => addToCart(btn.dataset.add)));
+}
+document.getElementById('refreshPicksBtn').addEventListener('click', generateAIPicks);
+
+/* ---------- AI search ---------- */
+let searchDebounce;
+document.getElementById('aiSearchInput').addEventListener('keydown', (e) => {
+  if(e.key === 'Enter') runAISearch(e.target.value);
+});
+async function runAISearch(query){
+  if(!query || !query.trim()){ renderProductGrid(); return; }
+  document.getElementById('gridTitle').textContent = 'Searching with AI...';
+  const catalogCompact = state.products.map(p => ({id:p.id, name:p.name, category:p.category, price:p.price, desc:p.desc}));
+  try{
+    const res = await fetch("/api/ai", {
+      method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({
+        maxTokens: 150,
+        prompt: `Catalog (JSON): ${JSON.stringify(catalogCompact)}\nCustomer search query: "${query}"\nReturn ONLY a raw JSON array of matching product ids from the catalog, most relevant first, e.g. ["p2","p7"]. No markdown, no preamble. If nothing matches well, return an empty array.`
+      })
+    });
+    const data = await res.json();
+    const text = (data.content||[]).map(c=>c.text||'').join('').trim().replace(/^```json|```$/g,'').trim();
+    const ids = JSON.parse(text);
+    const results = ids.map(id => state.products.find(p=>p.id===id)).filter(Boolean);
+    document.getElementById('gridTitle').textContent = `AI search results for "${query}"`;
+    renderProductGrid(null, results);
+  }catch(e){
+    document.getElementById('gridTitle').textContent = 'All products';
+    renderProductGrid();
+  }
+}
+
+/* ---------- AI chat assistant ---------- */
+let chatHistory = [];
+function toggleChat(open){
+  document.getElementById('chatPanel').classList.toggle('open', open);
+}
+document.getElementById('chatFab').addEventListener('click', () => toggleChat(true));
+document.getElementById('heroChatBtn').addEventListener('click', () => toggleChat(true));
+document.getElementById('chatOpenBtn').addEventListener('click', () => toggleChat(true));
+document.getElementById('closeChatBtn').addEventListener('click', () => toggleChat(false));
+
+document.getElementById('chatSendBtn').addEventListener('click', sendChat);
+document.getElementById('chatInput').addEventListener('keydown', (e) => { if(e.key === 'Enter') sendChat(); });
+
+function appendMsg(role, text){
+  const box = document.getElementById('chatMsgs');
+  const div = document.createElement('div');
+  div.className = 'msg ' + role;
+  div.textContent = text;
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+  return div;
+}
+
+async function sendChat(){
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if(!text) return;
+  input.value = '';
+  appendMsg('user', text);
+  chatHistory.push({role:'user', content:text});
+  const loadingEl = appendMsg('ai', '…thinking…');
+
+  const catalogCompact = state.products.map(p => ({id:p.id, name:p.name, category:p.category, price:p.price, desc:p.desc}));
+  const systemContext = `You are the assistant widget on NEXUS, an AI gadget store. Here is the real, current product catalog (JSON): ${JSON.stringify(catalogCompact)}. When the customer's question is about shopping or products, only recommend items that exist in this catalog and mention their real price. But you are a fully general, helpful assistant, not a narrow bot — if the customer asks something unrelated to the store (general knowledge, advice, math, writing help, random questions, anything), answer it directly and helpfully just like a normal capable assistant would, without steering the conversation back to shopping unless it's natural to do so. Keep replies conversational and reasonably concise, no markdown formatting.`;
+
+  try{
+    const res = await fetch("/api/chat", {
+      method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({
+        messages: [{role:"user", content: systemContext}, ...chatHistory]
+      })
+    });
+    if(!res.ok){
+      // /api/chat is handled by server.js (Express) using the Gemini API —
+      // make sure GEMINI_API_KEY is set in your .env file and the server is running.
+      loadingEl.textContent = "Couldn't reach the AI backend — make sure the server is running with GEMINI_API_KEY set in .env.";
+      chatHistory.pop();
+      return;
+    }
+    const data = await res.json();
+    const reply = (data.content||[]).map(c=>c.text||'').join(' ').trim() || "Sorry, I couldn't come up with a reply — try asking again.";
+    loadingEl.textContent = reply;
+    chatHistory.push({role:'assistant', content:reply});
+  }catch(e){
+    loadingEl.textContent = "Couldn't reach the AI backend — make sure the server is running with GEMINI_API_KEY set in .env.";
+    chatHistory.pop();
+  }
+}
+
+/* ---------- admin CRUD ---------- */
+document.getElementById('adminBtn').addEventListener('click', () => { renderAdminList(); document.getElementById('adminOverlay').classList.add('show'); });
+function renderAdminList(){
+  document.getElementById('adminList').innerHTML = state.products.map(p => `
+    <div class="admin-row">
+      <img src="${imgFor(p)}" alt="">
+      <span>${p.name} — ${money(p.price)}</span>
+      <button data-del="${p.id}">Delete</button>
+    </div>`).join('');
+  document.getElementById('adminList').querySelectorAll('[data-del]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      state.products = state.products.filter(p => p.id !== btn.dataset.del);
+      await dbSet('products', state.products, true);
+      renderAdminList(); renderCategoryChips(); renderProductGrid();
+    });
+  });
+}
+document.getElementById('admAddBtn').addEventListener('click', async () => {
+  const name = document.getElementById('admName').value.trim();
+  const price = parseFloat(document.getElementById('admPrice').value);
+  const category = document.getElementById('admCategory').value.trim() || 'General';
+  const desc = document.getElementById('admDesc').value.trim() || 'A new AI-enhanced product.';
+  const image = document.getElementById('admImage').value.trim() || null;
+  if(!name || isNaN(price)) return;
+  const product = { id:'p_' + Date.now(), name, price, oldPrice:null, category, desc, image, seed:'nexus-' + Date.now() };
+  state.products.push(product);
+  await dbSet('products', state.products, true);
+  ['admName','admPrice','admCategory','admDesc','admImage'].forEach(id => document.getElementById(id).value='');
+  renderAdminList(); renderCategoryChips(); renderProductGrid();
+});
+
+/* ---------- hero canvas: energetic particle field ---------- */
+const canvas = document.getElementById('heroCanvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+const colors = ['#B084FF','#FF5FA2','#4CF2D0'];
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function resizeHero(){
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * devicePixelRatio;
+  canvas.height = rect.height * devicePixelRatio;
+  ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+  const count = rect.width < 500 ? 26 : 50;
+  particles = Array.from({length:count}, () => ({
+    x: Math.random()*rect.width, y: Math.random()*rect.height,
+    vx:(Math.random()-0.5)*0.4, vy:(Math.random()-0.5)*0.4,
+    r: Math.random()*2+1, c: colors[Math.floor(Math.random()*colors.length)]
+  }));
+}
+function drawHero(){
+  const rect = canvas.getBoundingClientRect();
+  ctx.clearRect(0,0,rect.width,rect.height);
+  for(const p of particles){
+    if(!prefersReducedMotion){ p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0||p.x>rect.width) p.vx*=-1;
+      if(p.y<0||p.y>rect.height) p.vy*=-1; }
+    ctx.globalAlpha = 0.85;
+    ctx.fillStyle = p.c;
+    ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+  for(let i=0;i<particles.length;i++){
+    for(let j=i+1;j<particles.length;j++){
+      const a=particles[i], b=particles[j];
+      const d = Math.hypot(a.x-b.x, a.y-b.y);
+      if(d<90){ ctx.strokeStyle = `rgba(176,132,255,${1-d/90})`; ctx.lineWidth=0.5;
+        ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); }
+    }
+  }
+  if(!prefersReducedMotion) requestAnimationFrame(drawHero);
+}
+window.addEventListener('resize', resizeHero);
+resizeHero(); drawHero();
+
+/* ---------- init ---------- */
+(async function init(){
+  await loadProducts();
+  await loadCart();
+  generateAIPicks();
+})();
+</script>
+
+</body>
+</html>
