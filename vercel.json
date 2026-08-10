@@ -1,8 +1,19 @@
 {
-  "value": [
+  "version": 2,
+  "builds": [
     {
-      "id": "p1",
-      "name": "Aria Neural Earbuds"
+      "src": "api/index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/public/$1"
     }
   ]
 }
