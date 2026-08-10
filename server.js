@@ -253,13 +253,9 @@ app.post('/api/ai/compare', async (req, res) => {
   }
 });
 
-if (require.main === module) {
-  app.listen(PORT, () => {
-    console.log(`✅ NEXUS running at http://localhost:${PORT}`);
-  });
-}
-
-module.exports = app;
+app.listen(PORT, () => {
+  console.log(`✅ NEXUS running at http://localhost:${PORT}`);
+});
 }
 
 module.exports = app;
